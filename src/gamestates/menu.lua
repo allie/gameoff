@@ -1,4 +1,5 @@
-menu = {}
+local menu = {}
+menu.__index = menu
 
 function menu:init()
 	self.boy = love.graphics.newImage('assets/images/boy.png')
