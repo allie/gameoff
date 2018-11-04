@@ -8,7 +8,7 @@ else
 	WORKAROUND := 
 endif
 
-default: build doc run
+default: build run
 
 clean:
 	@[[ ! -e game.love ]] || rm game.love

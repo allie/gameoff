@@ -5,7 +5,7 @@ First, ensure [LÖVE](https://love2d.org) is installed on your system. For autom
 documentation, [ldoc](https://stevedonovan.github.io/ldoc/manual/doc.md.html) must be installed as well.
 Maps can be edited with [Tiled](https://www.mapeditor.org/index.html).
 
-To build, document, and run the game:
+To build and run the game:
 ```
 make
 ```
