@@ -14,7 +14,9 @@ function Gameobject.new()
 	-- @field y Y coordinate
 	-- @field w Width
 	-- @field h Height
-	instance.aabb = {x=0, y=0, w=0, h=0}
+	-- @field cx Centre X coordinate
+	-- @field cy Centre Y coordinate
+	instance.aabb = {x=0, y=0, w=0, h=0, cx=0, cy=0}
 
 	--- The object's current velocity
 	-- @field x X velocity

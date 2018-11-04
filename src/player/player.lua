@@ -113,6 +113,8 @@ function Player:adjustAABB()
 	-- Use the calculated bounds to build the final AABB. Keep x and y in the same spot, but adjust the dimensions
 	self.aabb.w = bounds.right - bounds.left
 	self.aabb.h = bounds.bottom - bounds.top
+	self.aabb.cx = math.floor(self.aabb.w / 2)
+	self.aabb.cy = math.floor(self.aabb.h / 2)
 
 	-- Update the relative positions of each body part
 	self.head.position.x = math.abs(bounds.left)

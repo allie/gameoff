@@ -3,6 +3,7 @@
 
 local bump = require('lib.bump.bump')
 local sti = require('lib.sti.sti')
+local Camera = require('lib.hump.camera')
 
 local Level = {}
 Level.__index = Level
@@ -15,13 +16,14 @@ function Level.new(player, mapFile)
 	local instance = {}
 
 	--- Enable wireframe rendering for game objects (debug)
-	instance.wireframes = true
+	instance.wireframes = false
 
 	--- bump world
 	instance.world = bump.newWorld()
 
 	--- Player instance
 	instance.player = player
+	instance.player.aabb.x = 440
 
 	--- Game objects affected by gravity
 	instance.objects = {}
@@ -29,8 +31,22 @@ function Level.new(player, mapFile)
 	--- Gravity of the world in units/s^2
 	instance.gravity = 10
 
+	--- Camera
+	instance.camera = Camera.new(
+		instance.player.aabb.x + instance.player.aabb.cx,
+		instance.player.aabb.cy + instance.player.aabb.cy
+	)
+
 	--- Tiled map
 	instance.map = sti(mapFile, {'bump'})
+
+	-- The bounds of the camera
+	instance.cameraBounds = {
+		left=love.graphics.getWidth() / 2,
+		right=instance.map.width * instance.map.tilewidth - love.graphics.getWidth() / 2,
+		top=love.graphics.getHeight() / 2,
+		bottom=instance.map.height * instance.map.tileheight - love.graphics.getHeight() / 2,
+	}
 
 	-- Add player to the game objects collection
 	table.insert(instance.objects, instance.player)
@@ -65,6 +81,18 @@ function Level:update(dt)
 		obj.aabb.x = ax
 		obj.aabb.y = ay
 	end
+
+	-- Update the position of the camera to follow the character
+	self.camera:lookAt(
+		self.player.aabb.x + self.player.aabb.cx,
+		self.player.aabb.y + self.player.aabb.cy
+	)
+
+	-- Clamp the camera within the bounds of the level
+	self.camera.x = math.max(self.cameraBounds.left, self.camera.x)
+	self.camera.x = math.min(self.cameraBounds.right, self.camera.x)
+	self.camera.y = math.max(self.cameraBounds.top, self.camera.y)
+	self.camera.y = math.min(self.cameraBounds.bottom, self.camera.y)
 end
 
 --- Draw the level on the screen
@@ -72,8 +100,29 @@ function Level:draw()
 	-- Reset the draw colour
 	love.graphics.setColor(255, 255, 255)
 
+	local tx = self.camera.x - love.graphics.getWidth() / 2
+	local ty = self.camera.y - love.graphics.getHeight() / 2
+
+	if tx < 0 then 
+		tx = 0 
+	end
+
+	if tx > self.map.width  * self.map.tilewidth  - love.graphics.getWidth() then
+		tx = self.map.width  * self.map.tilewidth  - love.graphics.getWidth()  
+	end
+
+	if ty > self.map.height * self.map.tileheight - love.graphics.getHeight() then
+		ty = self.map.height * self.map.tileheight - love.graphics.getHeight()
+	end
+
+	tx = math.floor(tx)
+	ty = math.floor(ty)
+
 	-- Draw the map
-	self.map:draw()
+	self.map:draw(-tx, -ty)
+
+	-- Attach the camera
+	self.camera:attach()
 
 	-- Draw game objects
 	for i, obj in ipairs(self.objects) do
@@ -86,6 +135,11 @@ function Level:draw()
 			love.graphics.setColor(255, 255, 255)
 		end
 	end
+
+	-- Detach the camera
+	self.camera:detach()
+
+	-- Draw UI here
 end
 
 return Level
