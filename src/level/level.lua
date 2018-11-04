@@ -26,7 +26,6 @@ function Level.new(player, mapFile)
 
 	--- Player instance
 	instance.player = player
-	instance.player.aabb.x = 0
 
 	--- Game objects affected by gravity
 	instance.objects = {}
@@ -51,14 +50,6 @@ function Level.new(player, mapFile)
 		bottom = instance.map.height * instance.map.tileheight - love.graphics.getHeight() / 2,
 	}
 
-	-- Add player to the game objects collection
-	table.insert(instance.objects, instance.player)
-
-	-- Add game objects to the world
-	for i, obj in ipairs(instance.objects) do
-		instance.world:add(obj, obj.aabb.x, obj.aabb.y, obj.aabb.w, obj.aabb.h)
-	end
-
 	-- Set spawn point for the player
 	for k, object in pairs(instance.map.objects) do
 		if object.name == 'spawn' then
@@ -66,6 +57,14 @@ function Level.new(player, mapFile)
 			instance.player.aabb.y = object.y
 			break
 		end
+	end
+
+	-- Add player to the game objects collection
+	table.insert(instance.objects, instance.player)
+
+	-- Add game objects to the world
+	for i, obj in ipairs(instance.objects) do
+		instance.world:add(obj, obj.aabb.x, obj.aabb.y, obj.aabb.w, obj.aabb.h)
 	end
 
 	-- Initialize STI with the world

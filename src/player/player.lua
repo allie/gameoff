@@ -201,7 +201,7 @@ function Player:update(dt)
 		if self.weight == 0 then
 			self.velocity.y = 0
 		else
-			self.velocity.y = -10 / self.weight
+			self.velocity.y = -7 / self.weight
 		end
 	end
 end
