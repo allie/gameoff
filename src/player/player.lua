@@ -42,7 +42,9 @@ function Player.new()
 	instance.validKeys = {
 		['a'] = true,
 		['d'] = true,
-		['space'] = true
+		['space'] = true,
+		['left'] = true,
+		['right'] = true
 	}
 
 	setmetatable(instance, Player)
@@ -182,12 +184,12 @@ function Player:update(dt)
 
 		for i, key in ipairs(self.input) do
 			-- Left
-			if key == 'a' then
+			if key == 'a' or key == 'left' then
 				self.velocity.x = -1 * dt
 				self.facing = -1
 
 			-- Right
-			elseif key == 'd' then
+			elseif key == 'd' or key == 'right' then
 				self.velocity.x = 1 * dt
 				self.facing = 1
 			end
