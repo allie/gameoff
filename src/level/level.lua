@@ -36,7 +36,8 @@ function Level.new(player, mapFile)
 	--- Camera
 	instance.camera = Camera.new(
 		instance.player.aabb.x + instance.player.aabb.cx,
-		instance.player.aabb.cy + instance.player.aabb.cy
+		instance.player.aabb.cy + instance.player.aabb.cy,
+		2
 	)
 
 	--- Tiled map
@@ -44,10 +45,10 @@ function Level.new(player, mapFile)
 
 	-- The bounds of the camera
 	instance.cameraBounds = {
-		left = love.graphics.getWidth() / 2,
-		right = instance.map.width * instance.map.tilewidth - love.graphics.getWidth() / 2,
-		top = love.graphics.getHeight() / 2,
-		bottom = instance.map.height * instance.map.tileheight - love.graphics.getHeight() / 2,
+		left = love.graphics.getWidth() / 2 / instance.camera.scale,
+		right = instance.map.width * instance.map.tilewidth - love.graphics.getWidth() / 2 / instance.camera.scale,
+		top = love.graphics.getHeight() / 2 / instance.camera.scale,
+		bottom = instance.map.height * instance.map.tileheight - love.graphics.getHeight() / 2 / instance.camera.scale,
 	}
 
 	-- Set spawn point for the player
@@ -119,26 +120,11 @@ function Level:draw()
 	-- Reset the draw colour
 	love.graphics.setColor(255, 255, 255)
 
-	local tx = self.camera.x - love.graphics.getWidth() / 2
-	local ty = self.camera.y - love.graphics.getHeight() / 2
-
-	if tx < 0 then 
-		tx = 0 
-	end
-
-	if tx > self.map.width  * self.map.tilewidth  - love.graphics.getWidth() then
-		tx = self.map.width  * self.map.tilewidth  - love.graphics.getWidth()  
-	end
-
-	if ty > self.map.height * self.map.tileheight - love.graphics.getHeight() then
-		ty = self.map.height * self.map.tileheight - love.graphics.getHeight()
-	end
-
-	tx = math.floor(tx)
-	ty = math.floor(ty)
+	local tx = math.floor(self.camera.x - love.graphics.getWidth() / 2 / self.camera.scale)
+	local ty = math.floor(self.camera.y - love.graphics.getHeight() / 2 / self.camera.scale)
 
 	-- Draw the map
-	self.map:draw(-tx, -ty)
+	self.map:draw(-tx, -ty, self.camera.scale, self.camera.scale)
 
 	-- Draw game objects
 	for i, obj in ipairs(self.objects) do
