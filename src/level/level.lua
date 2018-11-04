@@ -15,6 +15,17 @@ Level.__index = Level
 function Level.new(player, mapFile)
 	local instance = {}
 
+	--- Background image
+	instance.bg = nil
+
+	--- Background offset
+	-- @field x X offset
+	-- @field y Y offset
+	instance.bgOffset = {x=0, y=0}
+
+	--- Background scroll speed for parallax scrolling
+	instance.bgScrollSpeed = 1
+
 	--- Enable wireframe rendering for game objects (debug)
 	instance.wireframes = false
 
@@ -75,6 +86,17 @@ function Level.new(player, mapFile)
 	return instance
 end
 
+--- Set the background image of the level
+-- @param bg An Image
+-- @param xOffset The X offset to draw the image at
+-- @param yOffset The Y offset to draw the image at
+-- @param scrollSpeed Scroll speed multiplier for parallax scrolling
+function Level:setBackground(bg, xOffset, yOffset, scrollSpeed)
+	self.bg = bg
+	self.bgOfset = {x=xOffset, y=yOffset}
+	self.bgScrollSpeed = scrollSpeed
+end
+
 --- Update the game world
 -- @param dt Delta time
 function Level:update(dt)
@@ -120,8 +142,18 @@ function Level:draw()
 	-- Reset the draw colour
 	love.graphics.setColor(255, 255, 255)
 
+	-- Calculate offset for both background and map
 	local tx = math.floor(self.camera.x - love.graphics.getWidth() / 2 / self.camera.scale)
 	local ty = math.floor(self.camera.y - love.graphics.getHeight() / 2 / self.camera.scale)
+
+	-- Draw the background image
+	if self.bg ~= nil then
+		love.graphics.draw(
+			self.bg,
+			-tx * self.bgScrollSpeed + self.bgOffset.x,
+			-ty * self.bgScrollSpeed + self.bgOffset.y
+		)
+	end
 
 	-- Draw the map
 	self.map:draw(-tx, -ty, self.camera.scale, self.camera.scale)

@@ -7,7 +7,9 @@ local TestHead = require('player.parts.heads.test')
 local TestTorso = require('player.parts.torsos.test')
 local TestLegs = require('player.parts.legs.test')
 
-local Level = require('level.level')
+local TestLevel = require('level.levels.test')
+
+local Hud = require('hud.hud')
 
 local Play = {}
 Play.__index = menu
@@ -20,7 +22,9 @@ function Play:init()
 	self.player:setTorso(TestTorso.new())
 	self.player:setLegs(TestLegs.new())
 
-	self.level = Level.new(self.player, 'assets/levels/test/test.lua')
+	self.level = TestLevel.new(self.player)
+
+	self.hud = Hud.new()
 end
 
 function Play:enter()
@@ -29,6 +33,7 @@ end
 
 function Play:draw()
 	self.level:draw()
+	self.hud:draw()
 end
 
 function Play:keypressed(key, code)

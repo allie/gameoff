@@ -36,23 +36,13 @@
 </ul>
 
 
-<h2>Scripts</h2>
-<ul class="nowrap">
-  <li><a href="../scripts/conf.html">conf</a></li>
-  <li><strong>main</strong></li>
-</ul>
-<h2>Modules</h2>
-<ul class="nowrap">
-  <li><a href="../modules/gamestates.menu.html">gamestates.menu</a></li>
-  <li><a href="../modules/gamestates.play.html">gamestates.play</a></li>
-</ul>
 <h2>Classes</h2>
 <ul class="nowrap">
   <li><a href="../classes/core.gameobject.html">core.gameobject</a></li>
   <li><a href="../classes/hud.health.html">hud.health</a></li>
   <li><a href="../classes/hud.hud.html">hud.hud</a></li>
   <li><a href="../classes/level.level.html">level.level</a></li>
-  <li><a href="../classes/level.levels.test.html">level.levels.test</a></li>
+  <li><strong>level.levels.test</strong></li>
   <li><a href="../classes/player.parts.head.html">player.parts.head</a></li>
   <li><a href="../classes/player.parts.heads.test.html">player.parts.heads.test</a></li>
   <li><a href="../classes/player.parts.legs.html">player.parts.legs</a></li>
@@ -61,23 +51,37 @@
   <li><a href="../classes/player.parts.torsos.test.html">player.parts.torsos.test</a></li>
   <li><a href="../classes/player.player.html">player.player</a></li>
 </ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/gamestates.menu.html">gamestates.menu</a></li>
+  <li><a href="../modules/gamestates.play.html">gamestates.play</a></li>
+</ul>
+<h2>Scripts</h2>
+<ul class="nowrap">
+  <li><a href="../scripts/conf.html">conf</a></li>
+  <li><a href="../scripts/main.html">main</a></li>
+</ul>
 
 </div>
 
 <div id="content">
 
-<h1>Script <code>main</code></h1>
-<p>Entry point for love</p>
+<h1>Class <code>level.levels.test</code></h1>
+<p>Test level</p>
 <p>
 
 </p>
+    <h3>See also:</h3>
+    <ul>
+         <a href="../classes/level.level.html#">level.level</a>
+    </ul>
 
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#love.load">love.load ()</a></td>
-	<td class="summary">Register game state and do initialization</td>
+	<td class="name" nowrap><a href="#Test.new">Test.new (player)</a></td>
+	<td class="summary">Constructor</td>
 	</tr>
 </table>
 
@@ -89,14 +93,25 @@
     Methods
     <dl class="function">
     <dt>
-    <a name = "love.load"></a>
-    <strong>love.load ()</strong>
+    <a name = "Test.new"></a>
+    <strong>Test.new (player)</strong>
     </dt>
     <dd>
-    Register game state and do initialization
+    Constructor
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">player</span>
+         The Player object to use for this level
+        </li>
+    </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        A new Test instance
+    </ol>
 
 
 

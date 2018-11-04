@@ -33,24 +33,15 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
+<li><a href="#Fields">Fields</a></li>
 </ul>
 
 
-<h2>Scripts</h2>
-<ul class="nowrap">
-  <li><a href="../scripts/conf.html">conf</a></li>
-  <li><strong>main</strong></li>
-</ul>
-<h2>Modules</h2>
-<ul class="nowrap">
-  <li><a href="../modules/gamestates.menu.html">gamestates.menu</a></li>
-  <li><a href="../modules/gamestates.play.html">gamestates.play</a></li>
-</ul>
 <h2>Classes</h2>
 <ul class="nowrap">
   <li><a href="../classes/core.gameobject.html">core.gameobject</a></li>
   <li><a href="../classes/hud.health.html">hud.health</a></li>
-  <li><a href="../classes/hud.hud.html">hud.hud</a></li>
+  <li><strong>hud.hud</strong></li>
   <li><a href="../classes/level.level.html">level.level</a></li>
   <li><a href="../classes/level.levels.test.html">level.levels.test</a></li>
   <li><a href="../classes/player.parts.head.html">player.parts.head</a></li>
@@ -61,13 +52,23 @@
   <li><a href="../classes/player.parts.torsos.test.html">player.parts.torsos.test</a></li>
   <li><a href="../classes/player.player.html">player.player</a></li>
 </ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/gamestates.menu.html">gamestates.menu</a></li>
+  <li><a href="../modules/gamestates.play.html">gamestates.play</a></li>
+</ul>
+<h2>Scripts</h2>
+<ul class="nowrap">
+  <li><a href="../scripts/conf.html">conf</a></li>
+  <li><a href="../scripts/main.html">main</a></li>
+</ul>
 
 </div>
 
 <div id="content">
 
-<h1>Script <code>main</code></h1>
-<p>Entry point for love</p>
+<h1>Class <code>hud.hud</code></h1>
+<p>HUD (heads up display)</p>
 <p>
 
 </p>
@@ -76,8 +77,23 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#love.load">love.load ()</a></td>
-	<td class="summary">Register game state and do initialization</td>
+	<td class="name" nowrap><a href="#Hud.new">Hud.new ()</a></td>
+	<td class="summary">Constructor</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Hud:draw">Hud:draw ()</a></td>
+	<td class="summary">Draw the HUD</td>
+	</tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#instance.canvas">instance.canvas</a></td>
+	<td class="summary">Canvas to draw the HUD to (in order to scale 2x later)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#instance.health">instance.health</a></td>
+	<td class="summary">Health bar instance</td>
 	</tr>
 </table>
 
@@ -89,16 +105,71 @@
     Methods
     <dl class="function">
     <dt>
-    <a name = "love.load"></a>
-    <strong>love.load ()</strong>
+    <a name = "Hud.new"></a>
+    <strong>Hud.new ()</strong>
     </dt>
     <dd>
-    Register game state and do initialization
+    Constructor
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A new Hud instance
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Hud:draw"></a>
+    <strong>Hud:draw ()</strong>
+    </dt>
+    <dd>
+    Draw the HUD
 
 
 
 
 
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "instance.canvas"></a>
+    <strong>instance.canvas</strong>
+    </dt>
+    <dd>
+    Canvas to draw the HUD to (in order to scale 2x later)
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "instance.health"></a>
+    <strong>instance.health</strong>
+    </dt>
+    <dd>
+    Health bar instance
+
+
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../classes/hud.health.html#">hud.health</a>
+    </ul>
 
 
 </dd>
