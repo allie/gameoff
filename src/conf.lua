@@ -1,3 +1,8 @@
+--- love configuration file
+-- @script conf
+
+--- Set love configuration
+-- @param t Configuration table
 function love.conf(t)
 	t.accelerometerjoystick = false 
 	t.window.title = 'Game-Off'

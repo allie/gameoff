@@ -1,0 +1,379 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>game</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#Fields">Fields</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/player.parts.head.html">player.parts.head</a></li>
+  <li><a href="../classes/player.parts.heads.test.html">player.parts.heads.test</a></li>
+  <li><a href="../classes/player.parts.legs.html">player.parts.legs</a></li>
+  <li><a href="../classes/player.parts.legs.test.html">player.parts.legs.test</a></li>
+  <li><a href="../classes/player.parts.torso.html">player.parts.torso</a></li>
+  <li><a href="../classes/player.parts.torsos.test.html">player.parts.torsos.test</a></li>
+  <li><strong>player.player</strong></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/gamestates.menu.html">gamestates.menu</a></li>
+  <li><a href="../modules/gamestates.play.html">gamestates.play</a></li>
+</ul>
+<h2>Scripts</h2>
+<ul class="nowrap">
+  <li><a href="../scripts/conf.html">conf</a></li>
+  <li><a href="../scripts/main.html">main</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>player.player</code></h1>
+<p>The main character of the game</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Player.new">Player.new ()</a></td>
+	<td class="summary">Constructor</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Player:setHead">Player:setHead (head)</a></td>
+	<td class="summary">Set the head of the player's body</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Player:setTorso">Player:setTorso (torso)</a></td>
+	<td class="summary">Set the torso of the player's body</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Player:setLegs">Player:setLegs (legs)</a></td>
+	<td class="summary">Set the legs of the player's body</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Player:move">Player:move (dx, dy, dt)</a></td>
+	<td class="summary">Move the character by the specified x and y deltas</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Player.position">Player.position</a></td>
+	<td class="summary">The player's current position</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Player.velocity">Player.velocity</a></td>
+	<td class="summary">The player's current velocity</td>
+	</tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Player.head">Player.head</a></td>
+	<td class="summary">The player's head; an object inheriting player.parts.head</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Player.torso">Player.torso</a></td>
+	<td class="summary">The player's torso; an object inheriting player.parts.torso</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Player.legs">Player.legs</a></td>
+	<td class="summary">The player's legs; an object inheriting player.parts.legs</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Player.state">Player.state</a></td>
+	<td class="summary">The player's current animation state</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+    Methods
+    <dl class="function">
+    <dt>
+    <a name = "Player.new"></a>
+    <strong>Player.new ()</strong>
+    </dt>
+    <dd>
+    Constructor
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A new Player instance
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Player:setHead"></a>
+    <strong>Player:setHead (head)</strong>
+    </dt>
+    <dd>
+    Set the head of the player's body
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">head</span>
+         An object inheriting player.parts.head
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Player:setTorso"></a>
+    <strong>Player:setTorso (torso)</strong>
+    </dt>
+    <dd>
+    Set the torso of the player's body
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">torso</span>
+         An object inheriting player.parts.torso
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Player:setLegs"></a>
+    <strong>Player:setLegs (legs)</strong>
+    </dt>
+    <dd>
+    Set the legs of the player's body
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">legs</span>
+         An object inheriting player.parts.legs
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Player:move"></a>
+    <strong>Player:move (dx, dy, dt)</strong>
+    </dt>
+    <dd>
+    Move the character by the specified x and y deltas
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dx</span>
+         X position delta
+        </li>
+        <li><span class="parameter">dy</span>
+         Y position delta
+        </li>
+        <li><span class="parameter">dt</span>
+         Delta time
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Player.position"></a>
+    <strong>Player.position</strong>
+    </dt>
+    <dd>
+    The player's current position
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+         X coordinate
+        </li>
+        <li><span class="parameter">y</span>
+         Y coordinate
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Player.velocity"></a>
+    <strong>Player.velocity</strong>
+    </dt>
+    <dd>
+    The player's current velocity
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+         X velocity
+        </li>
+        <li><span class="parameter">y</span>
+         Y velocity
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Player.head"></a>
+    <strong>Player.head</strong>
+    </dt>
+    <dd>
+    The player's head; an object inheriting player.parts.head
+
+
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../classes/player.parts.head.html#">player.parts.head</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "Player.torso"></a>
+    <strong>Player.torso</strong>
+    </dt>
+    <dd>
+    The player's torso; an object inheriting player.parts.torso
+
+
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../classes/player.parts.torso.html#">player.parts.torso</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "Player.legs"></a>
+    <strong>Player.legs</strong>
+    </dt>
+    <dd>
+    The player's legs; an object inheriting player.parts.legs
+
+
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../classes/player.parts.legs.html#">player.parts.legs</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "Player.state"></a>
+    <strong>Player.state</strong>
+    </dt>
+    <dd>
+    The player's current animation state
+
+
+    <ul>
+        <li><span class="parameter">state</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2018-11-03 20:53:51 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
