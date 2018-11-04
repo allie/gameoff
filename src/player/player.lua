@@ -32,6 +32,16 @@ function Player.new()
 	-- @field current Current health
 	instance.health = {total=10, current=10}
 
+	-- Current input state
+	instance.input = {}
+
+	-- Valid keys for handling input
+	instance.validKeys = {
+		['a'] = true,
+		['d'] = true,
+		['space'] = true
+	}
+
 	setmetatable(instance, Player)
 	return instance
 end
@@ -125,12 +135,60 @@ function Player:adjustAABB()
 	self.legs.position.y = self.head.position.y + ly
 end
 
---- Move the character by the specified x and y deltas
--- @param dx X position delta
--- @param dy Y position delta
--- @param dt Delta time
-function Player:move(dx, dy, dt)
+--- Update the current input state
+-- @param input The last pressed or released key
+-- @param pressed Whether the key was pressed or released
+function Player:updateInput(input, pressed)
+	-- Return if this key isn't applicable
+	if self.validKeys[input] == nil then
+		return
+	end
 
+	-- Add pressed key to the input state if it's not there
+	if pressed then
+		for i, key in ipairs(self.input) do
+			if key == input then
+				return
+			end
+		end
+
+		table.insert(self.input, input)
+
+	-- Remove released key from the input state if it's there
+	else
+		for i = #self.input, 1, -1 do
+			if self.input[i] == input then
+				table.remove(self.input, i)
+				return
+			end
+		end
+	end
+end
+
+--- Update the player (handle input, etc.)
+-- @param dt Delta time
+-- @todo Add max velocity
+function Player:update(dt)
+	-- Recalculate the player's x velocity based on pressed keys
+	-- (only if a jump is not occurring)
+	if self.velocity.y == 0 then
+		self.velocity.x = 0
+
+		for i, key in ipairs(self.input) do
+			-- Left
+			if key == 'a' then
+				self.velocity.x = -1 * dt
+			-- Right
+			elseif key == 'd' then
+				self.velocity.x = 1 * dt
+			end
+		end
+	end
+
+	-- If space was pressed, begin a jump
+	if self.input[#self.input] == 'space' and self.velocity.y == 0 then
+		self.velocity.y = -10 * self.weight
+	end
 end
 
 --- Draw the player on the screen

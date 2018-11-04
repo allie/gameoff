@@ -23,13 +23,13 @@ function Level.new(player, mapFile)
 
 	--- Player instance
 	instance.player = player
-	instance.player.aabb.x = 440
+	instance.player.aabb.x = 0
 
 	--- Game objects affected by gravity
 	instance.objects = {}
 
 	--- Gravity of the world in units/s^2
-	instance.gravity = 10
+	instance.gravity = 20
 
 	--- Camera
 	instance.camera = Camera.new(
@@ -66,11 +66,16 @@ end
 --- Update the game world
 -- @param dt Delta time
 function Level:update(dt)
+	-- Update all game objects
+	for i, obj in ipairs(self.objects) do
+		obj:update(dt)
+	end
+
 	-- Update the positions of game objects accounting for gravity
 	local gdiff = dt * self.gravity
 	for i, obj in ipairs(self.objects) do
 		local newY = obj.aabb.y + obj.velocity.y + gdiff
-		local ax, ay, cols, len = self.world:move(obj, obj.aabb.x, newY)
+		local ax, ay, cols, len = self.world:move(obj, obj.aabb.x + (obj.velocity.x * 200), newY)
 
 		obj.velocity.y = obj.velocity.y + gdiff
 

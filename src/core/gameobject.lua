@@ -24,7 +24,7 @@ function Gameobject.new()
 	instance.velocity = {x=0, y=0}
 
 	--- The object's weight
-	instance.weight = 0
+	instance.weight = 1
 
 	setmetatable(instance, Gameobject)
 	return instance

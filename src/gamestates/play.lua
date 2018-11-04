@@ -31,6 +31,14 @@ function Play:draw()
 	self.level:draw()
 end
 
+function Play:keypressed(key, code)
+	self.player:updateInput(key, true)
+end
+
+function Play:keyreleased(key, code)
+	self.player:updateInput(key, false)
+end
+
 function Play:update(dt)
 	self.level:update(dt)
 end
