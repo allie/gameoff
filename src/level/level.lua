@@ -69,6 +69,12 @@ end
 
 --- Draw the level on the screen
 function Level:draw()
+	-- Reset the draw colour
+	love.graphics.setColor(255, 255, 255)
+
+	-- Draw the map
+	self.map:draw()
+
 	-- Draw game objects
 	for i, obj in ipairs(self.objects) do
 		obj:draw()
