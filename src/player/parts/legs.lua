@@ -19,6 +19,13 @@ function Legs.new()
 	-- @field h Height
 	instance.size = {w=0, h=0}
 
+	--- The position of this part, relative to its bounding box. This
+	-- value is calculated in the Player class after all three body parts
+	-- have been loaded.
+	-- @field x X coordinate
+	-- @field y Y coordinate
+	instance.position = {x=0, y=0}
+
 	--- Attachment point for the torso part relative to the top left of the legs' bounding box
 	-- @field x X coordinate
 	-- @field y Y coordinate
@@ -37,14 +44,14 @@ function Legs:setSprite(sprite)
 end
 
 --- Draw the legs on the screen
--- @param x X coordinate
--- @param y Y coordinate
+-- @param x X offset
+-- @param y Y offset
 function Legs:draw(x, y)
 	if self.sprite == nil then
 		return
 	end
 
-	love.graphics.draw(self.sprite, x, y)
+	love.graphics.draw(self.sprite, x + self.position.x, y + self.position.y)
 end
 
 return Legs

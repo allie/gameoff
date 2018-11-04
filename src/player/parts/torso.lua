@@ -19,6 +19,13 @@ function Torso.new()
 	-- @field h Height
 	instance.size = {w=0, h=0}
 
+	--- The position of this part, relative to its bounding box. This
+	-- value is calculated in the Player class after all three body parts
+	-- have been loaded.
+	-- @field x X coordinate
+	-- @field y Y coordinate
+	instance.position = {x=0, y=0}
+
 	--- The weight value of the torso; affects speed and jump height
 	instance.weight = 50
 
@@ -54,14 +61,14 @@ function Torso:action()
 end
 
 --- Draw the torso on the screen
--- @param x X coordinate
--- @param y Y coordinate
+-- @param x X offset
+-- @param y Y offset
 function Torso:draw(x, y)
 	if self.sprite == nil then
 		return
 	end
 
-	love.graphics.draw(self.sprite, x, y)
+	love.graphics.draw(self.sprite, x + self.position.x, y + self.position.y)
 end
 
 return Torso

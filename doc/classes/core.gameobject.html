@@ -40,11 +40,11 @@
 
 <h2>Classes</h2>
 <ul class="nowrap">
-  <li><a href="../classes/core.gameobject.html">core.gameobject</a></li>
+  <li><strong>core.gameobject</strong></li>
   <li><a href="../classes/level.level.html">level.level</a></li>
   <li><a href="../classes/player.parts.head.html">player.parts.head</a></li>
   <li><a href="../classes/player.parts.heads.test.html">player.parts.heads.test</a></li>
-  <li><strong>player.parts.legs</strong></li>
+  <li><a href="../classes/player.parts.legs.html">player.parts.legs</a></li>
   <li><a href="../classes/player.parts.legs.test.html">player.parts.legs.test</a></li>
   <li><a href="../classes/player.parts.torso.html">player.parts.torso</a></li>
   <li><a href="../classes/player.parts.torsos.test.html">player.parts.torsos.test</a></li>
@@ -65,52 +65,44 @@
 
 <div id="content">
 
-<h1>Class <code>player.parts.legs</code></h1>
-<p>Base class for leg parts</p>
+<h1>Class <code>core.gameobject</code></h1>
+<p>Base class for all game objects</p>
 <p>
 
 </p>
-    <h3>See also:</h3>
-    <ul>
-         <a href="../classes/player.player.html#">player.player</a>
-    </ul>
 
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Legs.new">Legs.new ()</a></td>
+	<td class="name" nowrap><a href="#Gameobject.new">Gameobject.new ()</a></td>
 	<td class="summary">Constructor</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Legs:setSprite">Legs:setSprite (sprite)</a></td>
-	<td class="summary">Set the sprite for this part</td>
+	<td class="name" nowrap><a href="#Gameobject:update">Gameobject:update (dt)</a></td>
+	<td class="summary">Update the object.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Legs:draw">Legs:draw (x, y)</a></td>
-	<td class="summary">Draw the legs on the screen</td>
+	<td class="name" nowrap><a href="#Gameobject:draw">Gameobject:draw ()</a></td>
+	<td class="summary">Draw the object on the screen.</td>
 	</tr>
 </table>
 <h2><a href="#Tables">Tables</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#instance.size">instance.size</a></td>
-	<td class="summary">The size of this part</td>
+	<td class="name" nowrap><a href="#instance.aabb">instance.aabb</a></td>
+	<td class="summary">The object's axis-aligned bounding box</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#instance.position">instance.position</a></td>
-	<td class="summary">The position of this part, relative to its bounding box.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#instance.torsoAttachment">instance.torsoAttachment</a></td>
-	<td class="summary">Attachment point for the torso part relative to the top left of the legs' bounding box</td>
+	<td class="name" nowrap><a href="#instance.velocity">instance.velocity</a></td>
+	<td class="summary">The object's current velocity</td>
 	</tr>
 </table>
 <h2><a href="#Fields">Fields</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#instance.sprite">instance.sprite</a></td>
-	<td class="summary">The graphic to render for the legs</td>
+	<td class="name" nowrap><a href="#instance.weight">instance.weight</a></td>
+	<td class="summary">The object's weight</td>
 	</tr>
 </table>
 
@@ -122,8 +114,8 @@
     Methods
     <dl class="function">
     <dt>
-    <a name = "Legs.new"></a>
-    <strong>Legs.new ()</strong>
+    <a name = "Gameobject.new"></a>
+    <strong>Gameobject.new ()</strong>
     </dt>
     <dd>
     Constructor
@@ -133,7 +125,7 @@
     <h3>Returns:</h3>
     <ol>
 
-        A new Legs instance
+        A new Gameobject instance
     </ol>
 
 
@@ -141,17 +133,18 @@
 
 </dd>
     <dt>
-    <a name = "Legs:setSprite"></a>
-    <strong>Legs:setSprite (sprite)</strong>
+    <a name = "Gameobject:update"></a>
+    <strong>Gameobject:update (dt)</strong>
     </dt>
     <dd>
-    Set the sprite for this part
+    Update the object.  This function is intended
+ to be overridden by child classes.
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">sprite</span>
-         An Image object
+        <li><span class="parameter">dt</span>
+         Delta time
         </li>
     </ul>
 
@@ -161,22 +154,14 @@
 
 </dd>
     <dt>
-    <a name = "Legs:draw"></a>
-    <strong>Legs:draw (x, y)</strong>
+    <a name = "Gameobject:draw"></a>
+    <strong>Gameobject:draw ()</strong>
     </dt>
     <dd>
-    Draw the legs on the screen
+    Draw the object on the screen.  This function is intended
+ to be overridden by child classes.
 
 
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">x</span>
-         X offset
-        </li>
-        <li><span class="parameter">y</span>
-         Y offset
-        </li>
-    </ul>
 
 
 
@@ -188,15 +173,21 @@
 
     <dl class="function">
     <dt>
-    <a name = "instance.size"></a>
-    <strong>instance.size</strong>
+    <a name = "instance.aabb"></a>
+    <strong>instance.aabb</strong>
     </dt>
     <dd>
-    The size of this part
+    The object's axis-aligned bounding box
 
 
     <h3>Fields:</h3>
     <ul>
+        <li><span class="parameter">x</span>
+         X coordinate
+        </li>
+        <li><span class="parameter">y</span>
+         Y coordinate
+        </li>
         <li><span class="parameter">w</span>
          Width
         </li>
@@ -211,45 +202,20 @@
 
 </dd>
     <dt>
-    <a name = "instance.position"></a>
-    <strong>instance.position</strong>
+    <a name = "instance.velocity"></a>
+    <strong>instance.velocity</strong>
     </dt>
     <dd>
-    The position of this part, relative to its bounding box.  This
- value is calculated in the Player class after all three body parts
- have been loaded.
+    The object's current velocity
 
 
     <h3>Fields:</h3>
     <ul>
         <li><span class="parameter">x</span>
-         X coordinate
+         X velocity
         </li>
         <li><span class="parameter">y</span>
-         Y coordinate
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "instance.torsoAttachment"></a>
-    <strong>instance.torsoAttachment</strong>
-    </dt>
-    <dd>
-    Attachment point for the torso part relative to the top left of the legs' bounding box
-
-
-    <h3>Fields:</h3>
-    <ul>
-        <li><span class="parameter">x</span>
-         X coordinate
-        </li>
-        <li><span class="parameter">y</span>
-         Y coordinate
+         Y velocity
         </li>
     </ul>
 
@@ -263,11 +229,11 @@
 
     <dl class="function">
     <dt>
-    <a name = "instance.sprite"></a>
-    <strong>instance.sprite</strong>
+    <a name = "instance.weight"></a>
+    <strong>instance.weight</strong>
     </dt>
     <dd>
-    The graphic to render for the legs
+    The object's weight
 
 
 
