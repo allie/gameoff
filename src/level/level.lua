@@ -2,6 +2,7 @@
 -- @classmod level.level
 
 local bump = require('lib.bump.bump')
+local sti = require('lib.sti.sti')
 
 local Level = {}
 Level.__index = Level
@@ -9,7 +10,8 @@ Level.__index = Level
 --- Constructor
 -- @return A new Level instance
 -- @param player A Player instance to use within the level
-function Level.new(player)
+-- @param mapFile Path to the Tiled map file
+function Level.new(player, mapFile)
 	local instance = {}
 
 	--- Enable wireframe rendering for game objects (debug)
@@ -27,6 +29,9 @@ function Level.new(player)
 	--- Gravity of the world in units/s^2
 	instance.gravity = 10
 
+	--- Tiled map
+	instance.map = sti(mapFile, {'bump'})
+
 	-- Add player to the game objects collection
 	table.insert(instance.objects, instance.player)
 
@@ -34,6 +39,9 @@ function Level.new(player)
 	for i, obj in ipairs(instance.objects) do
 		instance.world:add(obj, obj.aabb.x, obj.aabb.y, obj.aabb.w, obj.aabb.h)
 	end
+
+	-- Initialize STI with the world
+	instance.map:bump_init(instance.world)
 
 	setmetatable(instance, Level)
 	return instance

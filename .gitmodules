@@ -4,3 +4,6 @@
 [submodule "lib/bump"]
 	path = lib/bump
 	url = https://github.com/kikito/bump.lua.git
+[submodule "lib/sti"]
+	path = lib/sti
+	url = https://github.com/karai17/Simple-Tiled-Implementation.git

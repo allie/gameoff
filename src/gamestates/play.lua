@@ -20,7 +20,7 @@ function Play:init()
 	self.player:setTorso(TestTorso.new())
 	self.player:setLegs(TestLegs.new())
 
-	self.level = Level.new(self.player)
+	self.level = Level.new(self.player, 'assets/levels/test.lua')
 end
 
 function Play:enter()
