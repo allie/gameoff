@@ -23,6 +23,9 @@ function Gameobject.new()
 	-- @field y Y velocity
 	instance.velocity = {x=0, y=0}
 
+	--- The direction the object is facing; 1 = right, -1 = left
+	instance.facing = 1
+
 	--- The object's weight
 	instance.weight = 1
 

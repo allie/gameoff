@@ -12,6 +12,9 @@ setmetatable(Player, {__index = Gameobject})
 function Player.new()
 	local instance = Gameobject.new()
 
+	--- Canvas to render the whole body to
+	instance.canvas = nil
+
 	--- The player's head; an object inheriting player.parts.head
 	-- @see player.parts.head
 	instance.head = nil
@@ -133,6 +136,9 @@ function Player:adjustAABB()
 	self.torso.position.y = self.head.position.y + ty
 	self.legs.position.x = self.head.position.x + lx
 	self.legs.position.y = self.head.position.y + ly
+
+	-- Adjust the size of the canvas
+	self.canvas = love.graphics.newCanvas(self.aabb.w, self.aabb.h)
 end
 
 --- Update the current input state
@@ -178,9 +184,12 @@ function Player:update(dt)
 			-- Left
 			if key == 'a' then
 				self.velocity.x = -1 * dt
+				self.facing = -1
+
 			-- Right
 			elseif key == 'd' then
 				self.velocity.x = 1 * dt
+				self.facing = 1
 			end
 		end
 	end
@@ -194,9 +203,22 @@ end
 --- Draw the player on the screen
 -- @todo Incorporate camera coords
 function Player:draw()
-	self.legs:draw(self.aabb.x, self.aabb.y) 
-	self.torso:draw(self.aabb.x, self.aabb.y)
-	self.head:draw(self.aabb.x, self.aabb.y)
+	love.graphics.setCanvas(self.canvas)
+	love.graphics.clear()
+
+	-- Draw body parts to the canvas
+	self.legs:draw() 
+	self.torso:draw()
+	self.head:draw()
+
+	love.graphics.setCanvas()
+
+	-- Draw the canvas to the screen
+	if self.facing == -1 then
+		love.graphics.draw(self.canvas, self.aabb.x, self.aabb.y, 0, self.facing, 1, self.aabb.w, 0)
+	else
+		love.graphics.draw(self.canvas, self.aabb.x, self.aabb.y)
+	end
 end
 
 return Player

@@ -43,15 +43,13 @@ function Head:setSprite(sprite)
 	self.size.h = sprite:getHeight()
 end
 
---- Draw the head on the screen
--- @param x X offset
--- @param y Y offset
-function Head:draw(x, y)
+--- Draw the head on the Player canvas
+function Head:draw()
 	if self.sprite == nil then
 		return
 	end
 
-	love.graphics.draw(self.sprite, x + self.position.x, y + self.position.y)
+	love.graphics.draw(self.sprite, self.position.x, self.position.y)
 end
 
 return Head

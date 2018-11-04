@@ -43,15 +43,13 @@ function Legs:setSprite(sprite)
 	self.size.h = sprite:getHeight()
 end
 
---- Draw the legs on the screen
--- @param x X offset
--- @param y Y offset
-function Legs:draw(x, y)
+--- Draw the legs on the Player canvas
+function Legs:draw()
 	if self.sprite == nil then
 		return
 	end
 
-	love.graphics.draw(self.sprite, x + self.position.x, y + self.position.y)
+	love.graphics.draw(self.sprite, self.position.x, self.position.y)
 end
 
 return Legs

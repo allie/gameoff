@@ -16,7 +16,7 @@ function Level.new(player, mapFile)
 	local instance = {}
 
 	--- Enable wireframe rendering for game objects (debug)
-	instance.wireframes = false
+	instance.wireframes = true
 
 	--- bump world
 	instance.world = bump.newWorld()

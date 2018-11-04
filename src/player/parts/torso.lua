@@ -60,15 +60,13 @@ function Torso:action()
 	-- Do nothing by default
 end
 
---- Draw the torso on the screen
--- @param x X offset
--- @param y Y offset
-function Torso:draw(x, y)
+--- Draw the torso on the Player canvas
+function Torso:draw()
 	if self.sprite == nil then
 		return
 	end
 
-	love.graphics.draw(self.sprite, x + self.position.x, y + self.position.y)
+	love.graphics.draw(self.sprite, self.position.x, self.position.y)
 end
 
 return Torso
