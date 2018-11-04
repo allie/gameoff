@@ -59,6 +59,15 @@ function Level.new(player, mapFile)
 		instance.world:add(obj, obj.aabb.x, obj.aabb.y, obj.aabb.w, obj.aabb.h)
 	end
 
+	-- Set spawn point for the player
+	for k, object in pairs(instance.map.objects) do
+		if object.name == 'spawn' then
+			instance.player.aabb.x = object.x
+			instance.player.aabb.y = object.y
+			break
+		end
+	end
+
 	-- Initialize STI with the world
 	instance.map:bump_init(instance.world)
 
