@@ -196,7 +196,11 @@ function Player:update(dt)
 
 	-- If space was pressed, begin a jump
 	if self.input[#self.input] == 'space' and self.velocity.y == 0 then
-		self.velocity.y = -10 * self.weight
+		if self.weight == 0 then
+			self.velocity.y = 0
+		else
+			self.velocity.y = -10 / self.weight
+		end
 	end
 end
 
