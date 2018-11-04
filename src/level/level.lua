@@ -16,7 +16,7 @@ function Level.new(player, mapFile)
 	local instance = {}
 
 	--- Enable wireframe rendering for game objects (debug)
-	instance.wireframes = true
+	instance.wireframes = false
 
 	--- bump world
 	instance.world = bump.newWorld()
@@ -42,10 +42,10 @@ function Level.new(player, mapFile)
 
 	-- The bounds of the camera
 	instance.cameraBounds = {
-		left=love.graphics.getWidth() / 2,
-		right=instance.map.width * instance.map.tilewidth - love.graphics.getWidth() / 2,
-		top=love.graphics.getHeight() / 2,
-		bottom=instance.map.height * instance.map.tileheight - love.graphics.getHeight() / 2,
+		left = love.graphics.getWidth() / 2,
+		right = instance.map.width * instance.map.tilewidth - love.graphics.getWidth() / 2,
+		top = love.graphics.getHeight() / 2,
+		bottom = instance.map.height * instance.map.tileheight - love.graphics.getHeight() / 2,
 	}
 
 	-- Add player to the game objects collection
@@ -126,12 +126,9 @@ function Level:draw()
 	-- Draw the map
 	self.map:draw(-tx, -ty)
 
-	-- Attach the camera
-	self.camera:attach()
-
 	-- Draw game objects
 	for i, obj in ipairs(self.objects) do
-		obj:draw()
+		obj:draw(self.camera)
 
 		if self.wireframes then
 			love.graphics.setLineWidth(1)
@@ -140,9 +137,6 @@ function Level:draw()
 			love.graphics.setColor(255, 255, 255)
 		end
 	end
-
-	-- Detach the camera
-	self.camera:detach()
 
 	-- Draw UI here
 end

@@ -42,7 +42,8 @@ end
 
 --- Draw the object on the screen. This function is intended
 -- to be overridden by child classes.
-function Gameobject:draw()
+-- @param camera The level's camera
+function Gameobject:draw(camera)
 	-- Do nothing
 end
 

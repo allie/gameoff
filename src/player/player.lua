@@ -202,7 +202,8 @@ end
 
 --- Draw the player on the screen
 -- @todo Incorporate camera coords
-function Player:draw()
+-- @param camera The level's camera
+function Player:draw(camera)
 	love.graphics.setCanvas(self.canvas)
 	love.graphics.clear()
 
@@ -214,11 +215,15 @@ function Player:draw()
 	love.graphics.setCanvas()
 
 	-- Draw the canvas to the screen
+	camera:attach()
+
 	if self.facing == -1 then
 		love.graphics.draw(self.canvas, self.aabb.x, self.aabb.y, 0, self.facing, 1, self.aabb.w, 0)
 	else
 		love.graphics.draw(self.canvas, self.aabb.x, self.aabb.y)
 	end
+
+	camera:detach()
 end
 
 return Player
