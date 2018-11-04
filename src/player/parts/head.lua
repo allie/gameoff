@@ -3,14 +3,48 @@
 -- @see player.player
 
 local Head = {}
-Head.__index = {}
+Head.__index = Head
 
 --- Constructor
 -- @return A new Head instance
 function Head.new()
-	local self = setmetatable({}, Head)
-	-- Initialize instance variables
-	return self
+	local instance = {}
+
+	--- The graphic to render for the head
+	-- @todo Animation states
+	instance.sprite = nil
+
+	--- The size of this part
+	-- @field w Width
+	-- @field h Height
+	instance.size = {w=0, h=0}
+
+	--- Attachment point for the torso part relative to the top left of the head's bounding box
+	-- @field x X coordinate
+	-- @field y Y coordinate
+	instance.torsoAttachment = {x=0, y=0}
+
+	setmetatable(instance, Head)
+	return instance
+end
+
+--- Set the sprite for this part
+-- @param sprite An Image object
+function Head:setSprite(sprite)
+	self.sprite = sprite
+	self.size.w = sprite:getWidth()
+	self.size.h = sprite:getHeight()
+end
+
+--- Draw the head on the screen
+-- @param x X coordinate
+-- @param y Y coordinate
+function Head:draw(x, y)
+	if self.sprite == nil then
+		return
+	end
+
+	love.graphics.draw(self.sprite, x, y)
 end
 
 return Head

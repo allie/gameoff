@@ -33,6 +33,8 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#Fields">Fields</a></li>
 </ul>
 
 
@@ -78,6 +80,48 @@
 	<td class="name" nowrap><a href="#Torso.new">Torso.new ()</a></td>
 	<td class="summary">Constructor</td>
 	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Torso:setSprite">Torso:setSprite (sprite)</a></td>
+	<td class="summary">Set the sprite for this part</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Torso:action">Torso:action ()</a></td>
+	<td class="summary">Perform the action associated with the torso.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Torso:draw">Torso:draw (x, y)</a></td>
+	<td class="summary">Draw the torso on the screen</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#instance.size">instance.size</a></td>
+	<td class="summary">The size of this part</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#instance.headAttachment">instance.headAttachment</a></td>
+	<td class="summary">Attachment point for the head part relative to the top left of the torso's bounding box</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#instance.legsAttachment">instance.legsAttachment</a></td>
+	<td class="summary">Attachment point for the legs part relative to the top left of the torso's bounding box</td>
+	</tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#instance.sprite">instance.sprite</a></td>
+	<td class="summary">The graphic to render for the torso</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#instance.weight">instance.weight</a></td>
+	<td class="summary">The weight value of the torso; affects speed and jump height</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#instance.health">instance.health</a></td>
+	<td class="summary">The health bonus the torso provides; affects total health</td>
+	</tr>
 </table>
 
 <br/>
@@ -106,6 +150,183 @@
 
 
 </dd>
+    <dt>
+    <a name = "Torso:setSprite"></a>
+    <strong>Torso:setSprite (sprite)</strong>
+    </dt>
+    <dd>
+    Set the sprite for this part
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">sprite</span>
+         An Image object
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Torso:action"></a>
+    <strong>Torso:action ()</strong>
+    </dt>
+    <dd>
+    Perform the action associated with the torso.  This could be
+ an attack with a weapon, use of a tool, etc.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Torso:draw"></a>
+    <strong>Torso:draw (x, y)</strong>
+    </dt>
+    <dd>
+    Draw the torso on the screen
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+         X coordinate
+        </li>
+        <li><span class="parameter">y</span>
+         Y coordinate
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "instance.size"></a>
+    <strong>instance.size</strong>
+    </dt>
+    <dd>
+    The size of this part
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">w</span>
+         Width
+        </li>
+        <li><span class="parameter">h</span>
+         Height
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "instance.headAttachment"></a>
+    <strong>instance.headAttachment</strong>
+    </dt>
+    <dd>
+    Attachment point for the head part relative to the top left of the torso's bounding box
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+         X coordinate
+        </li>
+        <li><span class="parameter">y</span>
+         Y coordinate
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "instance.legsAttachment"></a>
+    <strong>instance.legsAttachment</strong>
+    </dt>
+    <dd>
+    Attachment point for the legs part relative to the top left of the torso's bounding box
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+         X coordinate
+        </li>
+        <li><span class="parameter">y</span>
+         Y coordinate
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "instance.sprite"></a>
+    <strong>instance.sprite</strong>
+    </dt>
+    <dd>
+    The graphic to render for the torso
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "instance.weight"></a>
+    <strong>instance.weight</strong>
+    </dt>
+    <dd>
+    The weight value of the torso; affects speed and jump height
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "instance.health"></a>
+    <strong>instance.health</strong>
+    </dt>
+    <dd>
+    The health bonus the torso provides; affects total health
+
+
+
+
+
+
+
+</dd>
 </dl>
 
 
@@ -113,7 +334,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2018-11-03 20:53:51 </i>
+<i style="float:right;">Last updated 2018-11-03 23:26:47 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

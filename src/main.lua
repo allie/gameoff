@@ -2,7 +2,6 @@
 -- @script main
 
 Gamestate = require('lib.hump.gamestate')
-Menu = require('gamestates.menu')
 Play = require('gamestates.play')
 
 --- Register game state and do initialization

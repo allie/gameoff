@@ -4,15 +4,21 @@
 
 local Head = require('player.parts.head')
 
-local Test = Head.new()
+local Test = {}
 Test.__index = Test
+setmetatable(Test, {__index = Head})
 
 --- Constructor
 -- @return A new Test instance
 function Test.new()
-	local self = setmetatable({}, Test)
-	-- Initialize instance variables
-	return self
+	local instance = Head.new()
+
+	instance:setSprite(love.graphics.newImage('assets/images/player/heads/test.png'))
+	instance.torsoAttachment.x = instance.size.w / 2
+	instance.torsoAttachment.y = instance.size.h
+
+	setmetatable(instance, Test)
+	return instance
 end
 
 return Test

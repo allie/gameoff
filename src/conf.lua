@@ -38,4 +38,5 @@ function love.conf(t)
 	t.modules.touch = false
 	t.modules.video = true
 	t.modules.window = true
+	t.console = true
 end
