@@ -86,7 +86,6 @@ function Player:adjustAABB()
 	local ty = self.head.torsoAttachment.y - self.torso.headAttachment.y
 	table.insert(top, ty)
 	table.insert(bottom, ty + self.torso.size.h)
-	print('torso', tx, ty)
 
 	-- Calculate the x coordinate of the legs, record left and right
 	local lx = tx + self.torso.legsAttachment.x - self.legs.torsoAttachment.x
@@ -97,7 +96,6 @@ function Player:adjustAABB()
 	local ly = ty + self.torso.legsAttachment.y - self.legs.torsoAttachment.y
 	table.insert(top, ly)
 	table.insert(bottom, ly + self.legs.size.h)
-	print('legs', lx, ly)
 
 	-- Find the outermost bounds of all the recorded values
 	table.sort(left)
@@ -111,7 +109,6 @@ function Player:adjustAABB()
 		right=right[#right],
 		bottom=bottom[#bottom]
 	}
-	print(bounds.left, bounds.top, bounds.right, bounds.bottom)
 
 	-- Use the calculated bounds to build the final AABB. Keep x and y in the same spot, but adjust the dimensions
 	self.aabb.w = bounds.right - bounds.left
