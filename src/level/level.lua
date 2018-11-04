@@ -19,7 +19,7 @@ function Level.new(player, mapFile)
 	instance.wireframes = false
 
 	--- Background colour of the level
-	instance.bgColour = {100, 149, 237}
+	instance.bgColour = {r=100, g=149, b=237}
 
 	--- bump world
 	instance.world = bump.newWorld()
@@ -106,7 +106,7 @@ end
 --- Draw the level on the screen
 function Level:draw()
 	-- Clear screen to the background colour
-	love.graphics.clear(self.bgColour[1] / 255, self.bgColour[2] / 255, self.bgColour[3] / 255)
+	love.graphics.clear(self.bgColour.r / 255, self.bgColour.g / 255, self.bgColour.b / 255)
 
 	-- Reset the draw colour
 	love.graphics.setColor(255, 255, 255)
