@@ -40,13 +40,13 @@
 
 <h2>Classes</h2>
 <ul class="nowrap">
-  <li><strong>core.gameobject</strong></li>
+  <li><a href="../classes/core.gameobject.html">core.gameobject</a></li>
   <li><a href="../classes/core.sprite.html">core.sprite</a></li>
   <li><a href="../classes/hud.health.html">hud.health</a></li>
   <li><a href="../classes/hud.hud.html">hud.hud</a></li>
   <li><a href="../classes/item.item.html">item.item</a></li>
   <li><a href="../classes/item.items.redpotion.html">item.items.redpotion</a></li>
-  <li><a href="../classes/level.background.html">level.background</a></li>
+  <li><strong>level.background</strong></li>
   <li><a href="../classes/level.level.html">level.level</a></li>
   <li><a href="../classes/level.levels.test.html">level.levels.test</a></li>
   <li><a href="../classes/player.parts.head.html">player.parts.head</a></li>
@@ -72,8 +72,8 @@
 
 <div id="content">
 
-<h1>Class <code>core.gameobject</code></h1>
-<p>Base class for all game objects</p>
+<h1>Class <code>level.background</code></h1>
+<p>A parallax scrolling background</p>
 <p>
 
 </p>
@@ -82,42 +82,46 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Gameobject.new">Gameobject.new ()</a></td>
+	<td class="name" nowrap><a href="#Background.new">Background.new (images[, intensity[, scale[, xOffset[, yOffset]]]])</a></td>
 	<td class="summary">Constructor</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Gameobject:update">Gameobject:update (dt)</a></td>
-	<td class="summary">Update the object.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#Gameobject:draw">Gameobject:draw (camera)</a></td>
-	<td class="summary">Draw the object on the screen.</td>
+	<td class="name" nowrap><a href="#Background:draw">Background:draw (scroll)</a></td>
+	<td class="summary">Draw the background</td>
 	</tr>
 </table>
 <h2><a href="#Tables">Tables</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#instance.aabb">instance.aabb</a></td>
-	<td class="summary">The object's axis-aligned bounding box</td>
+	<td class="name" nowrap><a href="#instance.layers">instance.layers</a></td>
+	<td class="summary">Layers of the background</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#instance.velocity">instance.velocity</a></td>
-	<td class="summary">The object's current velocity</td>
+	<td class="name" nowrap><a href="#instance.position">instance.position</a></td>
+	<td class="summary">Drawing position</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#instance.offset">instance.offset</a></td>
+	<td class="summary">Drawing offset</td>
 	</tr>
 </table>
 <h2><a href="#Fields">Fields</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#instance.facing">instance.facing</a></td>
-	<td class="summary">The direction the object is facing; 1 = right, -1 = left</td>
+	<td class="name" nowrap><a href="#instance.intensity">instance.intensity</a></td>
+	<td class="summary">Parallax intensity; 0 disables the effct</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#instance.weight">instance.weight</a></td>
-	<td class="summary">The object's weight</td>
+	<td class="name" nowrap><a href="#instance.scale">instance.scale</a></td>
+	<td class="summary">Scale to draw the background with</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#instance.isSolid">instance.isSolid</a></td>
-	<td class="summary">Enable or disable collision</td>
+	<td class="name" nowrap><a href="#instance.limit">instance.limit</a></td>
+	<td class="summary">X coordinate limits (for drawing along the X axis)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#instance.canvas">instance.canvas</a></td>
+	<td class="summary">The canvas to render to</td>
 	</tr>
 </table>
 
@@ -129,18 +133,40 @@
     Methods
     <dl class="function">
     <dt>
-    <a name = "Gameobject.new"></a>
-    <strong>Gameobject.new ()</strong>
+    <a name = "Background.new"></a>
+    <strong>Background.new (images[, intensity[, scale[, xOffset[, yOffset]]]])</strong>
     </dt>
     <dd>
     Constructor
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">images</span>
+         A table of images to use for the layers
+        </li>
+        <li><span class="parameter">intensity</span>
+         Specifies how intense the parallax effect should be; 0 disables the effect
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">scale</span>
+         Scale to draw the background with
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">xOffset</span>
+         X offset for drawing the background
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">yOffset</span>
+         Y offset for drawing the background
+         (<em>optional</em>)
+        </li>
+    </ul>
 
     <h3>Returns:</h3>
     <ol>
 
-        A new Gameobject instance
+        A new Level instance
     </ol>
 
 
@@ -148,39 +174,17 @@
 
 </dd>
     <dt>
-    <a name = "Gameobject:update"></a>
-    <strong>Gameobject:update (dt)</strong>
+    <a name = "Background:draw"></a>
+    <strong>Background:draw (scroll)</strong>
     </dt>
     <dd>
-    Update the object.  This function is intended
- to be overridden by child classes.
+    Draw the background
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">dt</span>
-         Delta time
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Gameobject:draw"></a>
-    <strong>Gameobject:draw (camera)</strong>
-    </dt>
-    <dd>
-    Draw the object on the screen.  This function is intended
- to be overridden by child classes.
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">camera</span>
-         The level's camera
+        <li><span class="parameter">scroll</span>
+         How far along the map's X axis to calculate for; between 0 and 1
         </li>
     </ul>
 
@@ -194,11 +198,25 @@
 
     <dl class="function">
     <dt>
-    <a name = "instance.aabb"></a>
-    <strong>instance.aabb</strong>
+    <a name = "instance.layers"></a>
+    <strong>instance.layers</strong>
     </dt>
     <dd>
-    The object's axis-aligned bounding box
+    Layers of the background
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "instance.position"></a>
+    <strong>instance.position</strong>
+    </dt>
+    <dd>
+    Drawing position
 
 
     <h3>Fields:</h3>
@@ -209,18 +227,6 @@
         <li><span class="parameter">y</span>
          Y coordinate
         </li>
-        <li><span class="parameter">w</span>
-         Width
-        </li>
-        <li><span class="parameter">h</span>
-         Height
-        </li>
-        <li><span class="parameter">cx</span>
-         Centre X coordinate
-        </li>
-        <li><span class="parameter">cy</span>
-         Centre Y coordinate
-        </li>
     </ul>
 
 
@@ -229,20 +235,20 @@
 
 </dd>
     <dt>
-    <a name = "instance.velocity"></a>
-    <strong>instance.velocity</strong>
+    <a name = "instance.offset"></a>
+    <strong>instance.offset</strong>
     </dt>
     <dd>
-    The object's current velocity
+    Drawing offset
 
 
     <h3>Fields:</h3>
     <ul>
         <li><span class="parameter">x</span>
-         X velocity
+         X offset
         </li>
         <li><span class="parameter">y</span>
-         Y velocity
+         Y offset
         </li>
     </ul>
 
@@ -256,11 +262,11 @@
 
     <dl class="function">
     <dt>
-    <a name = "instance.facing"></a>
-    <strong>instance.facing</strong>
+    <a name = "instance.intensity"></a>
+    <strong>instance.intensity</strong>
     </dt>
     <dd>
-    The direction the object is facing; 1 = right, -1 = left
+    Parallax intensity; 0 disables the effct
 
 
 
@@ -270,11 +276,11 @@
 
 </dd>
     <dt>
-    <a name = "instance.weight"></a>
-    <strong>instance.weight</strong>
+    <a name = "instance.scale"></a>
+    <strong>instance.scale</strong>
     </dt>
     <dd>
-    The object's weight
+    Scale to draw the background with
 
 
 
@@ -284,11 +290,25 @@
 
 </dd>
     <dt>
-    <a name = "instance.isSolid"></a>
-    <strong>instance.isSolid</strong>
+    <a name = "instance.limit"></a>
+    <strong>instance.limit</strong>
     </dt>
     <dd>
-    Enable or disable collision
+    X coordinate limits (for drawing along the X axis)
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "instance.canvas"></a>
+    <strong>instance.canvas</strong>
+    </dt>
+    <dd>
+    The canvas to render to
 
 
 
