@@ -3,6 +3,7 @@
 -- @see level.level
 
 local Level = require('level.level')
+local Background = require('level.background')
 
 local Test = {}
 Test.__index = Test
@@ -14,7 +15,13 @@ setmetatable(Test, {__index = Level})
 function Test.new(player)
 	local instance = Level.new(player, 'assets/levels/test/test.lua')
 
-	instance:setBackground(love.graphics.newImage('assets/levels/test/bg.png'), 0, -200, 0.5)
+	instance.bg = Background.new({
+		'assets/levels/test/bg/1.png',
+		'assets/levels/test/bg/2.png',
+		'assets/levels/test/bg/3.png',
+		'assets/levels/test/bg/4.png',
+		'assets/levels/test/bg/5.png'
+	}, 100, 6, 0, -100)
 
 	setmetatable(instance, Test)
 	return instance
