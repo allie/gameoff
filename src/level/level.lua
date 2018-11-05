@@ -28,9 +28,6 @@ function Level.new(player, mapFile)
 	--- Background scroll speed for parallax scrolling
 	instance.bgScrollSpeed = 1
 
-	--- Enable wireframe rendering for game objects (debug)
-	instance.wireframes = false
-
 	--- Background colour of the level
 	instance.bgColour = {r=100, g=149, b=237}
 
@@ -178,13 +175,6 @@ function Level:draw()
 	-- Draw game objects
 	for i, obj in ipairs(self.objects) do
 		obj:draw(self.camera)
-
-		if self.wireframes then
-			love.graphics.setLineWidth(1)
-			love.graphics.setColor(0, 255, 0)
-			love.graphics.rectangle('line', obj.aabb.x, obj.aabb.y, obj.aabb.w, obj.aabb.h)
-			love.graphics.setColor(255, 255, 255)
-		end
 	end
 end
 
