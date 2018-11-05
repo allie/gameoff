@@ -11,11 +11,13 @@ local TestLevel = require('level.levels.test')
 
 local Hud = require('hud.hud')
 
+local Sprite = require('core.sprite')
+
 local Play = {}
 Play.__index = menu
 
 function Play:init()
-	self.music = love.audio.newSource('assets/audio/test.mp3', 'stream')
+	-- self.music = love.audio.newSource('assets/audio/test.mp3', 'stream')
 
 	self.player = Player.new()
 	self.player:setHead(TestHead.new())
@@ -28,7 +30,7 @@ function Play:init()
 end
 
 function Play:enter()
-	love.audio.play(self.music)
+	-- love.audio.play(self.music)
 end
 
 function Play:draw()

@@ -5,6 +5,8 @@ local bump = require('lib.bump.bump')
 local sti = require('lib.sti.sti')
 local Camera = require('lib.hump.camera')
 
+local RedPotion = require('item.items.redpotion')
+
 local Level = {}
 Level.__index = Level
 
@@ -44,15 +46,20 @@ function Level.new(player, mapFile)
 	--- Gravity of the world in units/s^2
 	instance.gravity = 20
 
+	--- Tiled map
+	instance.map = sti(mapFile, {'bump'})
+
+	--- Item to class mapping
+	instance.itemMap = {
+		['redpotion'] = RedPotion
+	}
+
 	--- Camera
 	instance.camera = Camera.new(
 		instance.player.aabb.x + instance.player.aabb.cx,
 		instance.player.aabb.cy + instance.player.aabb.cy,
 		2
 	)
-
-	--- Tiled map
-	instance.map = sti(mapFile, {'bump'})
 
 	-- The bounds of the camera
 	instance.cameraBounds = {
@@ -73,6 +80,16 @@ function Level.new(player, mapFile)
 
 	-- Add player to the game objects collection
 	table.insert(instance.objects, instance.player)
+
+	-- Load items into the world
+	for k, object in pairs(instance.map.objects) do
+		if object.type == 'item' then
+			table.insert(
+				instance.objects,
+				instance.itemMap[object.name].new(object.x, object.y)
+			)
+		end
+	end
 
 	-- Add game objects to the world
 	for i, obj in ipairs(instance.objects) do
@@ -169,8 +186,6 @@ function Level:draw()
 			love.graphics.setColor(255, 255, 255)
 		end
 	end
-
-	-- Draw UI here
 end
 
 return Level

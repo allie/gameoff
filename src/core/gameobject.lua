@@ -29,6 +29,9 @@ function Gameobject.new()
 	--- The object's weight
 	instance.weight = 1
 
+	--- Enable or disable collision
+	instance.isSolid = true
+
 	setmetatable(instance, Gameobject)
 	return instance
 end
