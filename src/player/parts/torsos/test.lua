@@ -16,8 +16,8 @@ function Test.new()
 
 	instance:setSprite(Sprite.new('assets/images/player/torsos/test.png'))
 	instance.headAttachment.x = instance.size.w / 2 - 2
-	instance.headAttachment.y = 8
-	instance.legsAttachment.x = instance.size.w / 2 + 2
+	instance.headAttachment.y = 4
+	instance.legsAttachment.x = instance.size.w / 2 + 1
 	instance.legsAttachment.y = instance.size.h - 1
 
 	setmetatable(instance, Test)

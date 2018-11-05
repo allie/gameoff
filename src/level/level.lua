@@ -55,7 +55,7 @@ function Level.new(player, mapFile)
 	instance.camera = Camera.new(
 		instance.player.aabb.x + instance.player.aabb.cx,
 		instance.player.aabb.cy + instance.player.aabb.cy,
-		2
+		3
 	)
 
 	-- The bounds of the camera
@@ -123,7 +123,7 @@ function Level:update(dt)
 	local gdiff = dt * self.gravity
 	for i, obj in ipairs(self.objects) do
 		local newY = obj.aabb.y + obj.velocity.y + gdiff
-		local ax, ay, cols, len = self.world:move(obj, obj.aabb.x + (obj.velocity.x * 200), newY)
+		local ax, ay, cols, len = self.world:move(obj, obj.aabb.x + (obj.velocity.x * 120), newY)
 
 		obj.velocity.y = obj.velocity.y + gdiff
 
