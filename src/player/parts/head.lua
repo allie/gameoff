@@ -11,7 +11,6 @@ function Head.new()
 	local instance = {}
 
 	--- The graphic to render for the head
-	-- @todo Animation states
 	instance.sprite = nil
 
 	--- The size of this part
@@ -36,11 +35,18 @@ function Head.new()
 end
 
 --- Set the sprite for this part
--- @param sprite An Image object
+-- @param sprite A Sprite object
+-- @see core.sprite
 function Head:setSprite(sprite)
 	self.sprite = sprite
-	self.size.w = sprite:getWidth()
-	self.size.h = sprite:getHeight()
+	self.size.w = sprite.fw
+	self.size.h = sprite.fh
+	self.sprite:playAnimation()
+end
+
+--- Update the sprite's animation
+function Head:update(dt)
+	self.sprite:update(dt)
 end
 
 --- Draw the head on the Player canvas
@@ -49,7 +55,7 @@ function Head:draw()
 		return
 	end
 
-	love.graphics.draw(self.sprite, self.position.x, self.position.y)
+	self.sprite:draw(self.position.x, self.position.y)
 end
 
 return Head

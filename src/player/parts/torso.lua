@@ -11,7 +11,6 @@ function Torso.new()
 	local instance = {}
 
 	--- The graphic to render for the torso
-	-- @todo Animation states
 	instance.sprite = nil
 
 	--- The size of this part
@@ -47,11 +46,13 @@ function Torso.new()
 end
 
 --- Set the sprite for this part
--- @param sprite An Image object
+-- @param sprite A Sprite object
+-- @see core.sprite
 function Torso:setSprite(sprite)
 	self.sprite = sprite
-	self.size.w = sprite:getWidth()
-	self.size.h = sprite:getHeight()
+	self.size.w = sprite.fw
+	self.size.h = sprite.fh
+	self.sprite:playAnimation()
 end
 
 --- Perform the action associated with the torso. This could be
@@ -60,13 +61,19 @@ function Torso:action()
 	-- Do nothing by default
 end
 
+--- Update the sprite's animation
+-- @param dt Delta time
+function Torso:update(dt)
+	self.sprite:update(dt)
+end
+
 --- Draw the torso on the Player canvas
 function Torso:draw()
 	if self.sprite == nil then
 		return
 	end
 
-	love.graphics.draw(self.sprite, self.position.x, self.position.y)
+	self.sprite:draw(self.position.x, self.position.y)
 end
 
 return Torso

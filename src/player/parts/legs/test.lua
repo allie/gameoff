@@ -3,6 +3,7 @@
 -- @see player.parts.legs
 
 local Legs = require('player.parts.legs')
+local Sprite = require('core.sprite')
 
 local Test = {}
 Test.__index = Test
@@ -13,7 +14,7 @@ setmetatable(Test, {__index = Legs})
 function Test.new()
 	local instance = Legs.new()
 
-	instance:setSprite(love.graphics.newImage('assets/images/player/legs/test.png'))
+	instance:setSprite(Sprite.new('assets/images/player/legs/test.png'))
 	instance.torsoAttachment.x = instance.size.w / 2
 	instance.torsoAttachment.y = 0
 
