@@ -204,6 +204,11 @@ function Player:update(dt)
 			self.velocity.y = -6 / self.weight
 		end
 	end
+
+	-- Update animation for each body part
+	self.head:update(dt)
+	self.torso:update(dt)
+	self.legs:update(dt)
 end
 
 --- Draw the player on the screen

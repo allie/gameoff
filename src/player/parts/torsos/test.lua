@@ -14,11 +14,11 @@ setmetatable(Test, {__index = Torso})
 function Test.new()
 	local instance = Torso.new()
 
-	instance:setSprite(Sprite.new('assets/images/player/torsos/test.png'))
-	instance.headAttachment.x = instance.size.w / 2 - 2
+	instance:setSprite(Sprite.new('assets/images/player/torsos/test.png', 24, 4, 0.3))
+	instance.headAttachment.x = instance.size.w / 2
 	instance.headAttachment.y = 4
-	instance.legsAttachment.x = instance.size.w / 2 + 1
-	instance.legsAttachment.y = instance.size.h - 1
+	instance.legsAttachment.x = instance.size.w / 2
+	instance.legsAttachment.y = instance.size.h - 4
 
 	setmetatable(instance, Test)
 	return instance
