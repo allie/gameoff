@@ -52,8 +52,39 @@ function Background.new(images, intensity, scale, xOffset, yOffset)
 		h = instance.layers[1]:getHeight() * instance.scale
 	}
 
+	--- Autoscrolling layers (none by default)
+	instance.autoscrollLayers = {}
+
 	setmetatable(instance, Background)
 	return instance
+end
+
+--- Enable autoscrolling on a layer
+function Background:autoscroll(layer, speed, direction)
+	self.autoscrollLayers[layer] = {
+		position = 0,
+		speed = speed
+	}
+
+	if direction == 'left' then
+		self.autoscrollLayers[layer].direction = -1
+	elseif direction == 'right' then
+		self.autoscrollLayers[layer].direction = 1
+	end
+end
+
+--- Update the background autoscrolling
+-- @param dt Delta time
+function Background:update(dt)
+	for key, layer in pairs(self.autoscrollLayers) do
+		layer.position = layer.position + (layer.speed / 100) * -layer.direction * dt
+
+		if layer.direction == -1 and layer.position >= 1 then
+			layer.position = -1
+		elseif layer.direction == 1 and layer.position <= -1 then
+			layer.position = 1
+		end
+	end
 end
 
 --- Draw the background
@@ -68,15 +99,50 @@ function Background:draw(scroll)
 
 	for i, layer in ipairs(self.layers) do
 		local mul = 1 / ((#self.layers - i) + 1)
-		love.graphics.draw(
-			layer,
-			cx - (mul * self.limit * scroll),
-			cy,
-			0,
-			self.scale, self.scale,
-			layer:getWidth() / 2,
-			layer:getHeight() / 2
-		)
+
+		-- Render static layers
+		if self.autoscrollLayers[i] == nil then
+			love.graphics.draw(
+				layer,
+				cx - (mul * self.limit * scroll),
+				cy,
+				0,
+				self.scale, self.scale,
+				layer:getWidth() / 2,
+				layer:getHeight() / 2
+			)
+
+		-- Render autoscrolling layers
+		else
+			local x = cx - (self.limit * self.autoscrollLayers[i].position) - (mul * self.limit * scroll)
+
+			love.graphics.draw(
+				layer,
+				x,
+				cy,
+				0,
+				self.scale, self.scale,
+				layer:getWidth() / 2,
+				layer:getHeight() / 2
+			)
+
+			-- Draw the layer a second time alongside the first so it wraps
+			if x > 0 then
+				x = x - layer:getWidth() * self.scale
+			else
+				x = x + layer:getWidth() * self.scale
+			end
+
+			love.graphics.draw(
+				layer,
+				x,
+				cy,
+				0,
+				self.scale, self.scale,
+				layer:getWidth() / 2,
+				layer:getHeight() / 2
+			)
+		end
 	end
 end
 

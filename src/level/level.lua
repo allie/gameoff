@@ -104,6 +104,9 @@ end
 --- Update the game world
 -- @param dt Delta time
 function Level:update(dt)
+	-- Update the background
+	self.bg:update(dt)
+
 	-- Update all game objects
 	for i, obj in ipairs(self.objects) do
 		obj:update(dt)

@@ -23,6 +23,8 @@ function Test.new(player)
 		'assets/levels/test/bg/5.png'
 	}, 100, 6, 0, -100)
 
+	instance.bg:autoscroll(5, 5, 'right')
+
 	setmetatable(instance, Test)
 	return instance
 end
