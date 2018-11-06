@@ -38,14 +38,19 @@ function Background.new(images, intensity, scale, xOffset, yOffset)
 		table.insert(instance.layers, love.graphics.newImage(image))
 	end
 
-	--- X coordinate limits (for drawing along the X axis)
-	instance.limit = (instance.layers[1]:getWidth() / 2) * (instance.intensity / 100)
+	--- Width of one layer
+	instance.layerWidth = instance.layers[1]:getWidth() * instance.scale
 
-	--- The canvas to render to
-	instance.canvas = love.graphics.newCanvas(
-		(instance.limit - (-instance.limit)) + instance.layers[1]:getWidth(),
-		instance.layers[1]:getHeight()
-	)
+	--- X coordinate limits (for drawing along the X axis)
+	instance.limit = (instance.layerWidth / 2) * (instance.intensity / 100)
+
+	--- The bounds to render within
+	-- @param w Width
+	-- @param h Height
+	instance.bounds = {
+		w = (instance.limit - (-instance.limit)) + instance.layers[1]:getWidth() * instance.scale,
+		h = instance.layers[1]:getHeight() * instance.scale
+	}
 
 	setmetatable(instance, Background)
 	return instance
@@ -58,11 +63,8 @@ function Background:draw(scroll)
 	scroll = scroll * 2 - 1
 
 	-- Find the centre point
-	local cx = self.canvas:getWidth() / 2
-	local cy = self.canvas:getHeight() / 2
-
-	love.graphics.setCanvas(self.canvas)
-	love.graphics.clear()
+	local cx = love.graphics.getWidth() / 2 + self.offset.x
+	local cy = love.graphics.getHeight() / 2 + self.offset.y
 
 	for i, layer in ipairs(self.layers) do
 		local mul = 1 / ((#self.layers - i) + 1)
@@ -70,23 +72,12 @@ function Background:draw(scroll)
 			layer,
 			cx - (mul * self.limit * scroll),
 			cy,
-			0, 1, 1,
+			0,
+			self.scale, self.scale,
 			layer:getWidth() / 2,
 			layer:getHeight() / 2
 		)
 	end
-
-	love.graphics.setCanvas()
-
-	love.graphics.draw(
-		self.canvas,
-		love.graphics.getWidth() / 2 + self.offset.x,
-		love.graphics.getHeight() / 2 + self.offset.y,
-		0,
-		self.scale, self.scale,
-		self.canvas:getWidth() / 2,
-		self.canvas:getHeight() / 2
-	)
 end
 
 return Background
