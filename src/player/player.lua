@@ -171,6 +171,7 @@ function Player:update(dt)
 		if self.weight == 0 then
 			self.velocity.y = 0
 		else
+			Globals.sound:play('player-jump')
 			self.velocity.y = -7.8 / self.weight
 		end
 	end

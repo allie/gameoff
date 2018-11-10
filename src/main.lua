@@ -12,6 +12,7 @@ bitser = require('lib.bitser.bitser')
 local Config = require('core.config')
 local AutoUpdater = require('core.autoupdater')
 local InputManager = require('core.inputmanager')
+local SoundManager = require('core.soundmanager')
 
 -- Game states
 local MenuState = require('gamestates.mainmenu')
@@ -34,6 +35,7 @@ function love.load()
 	Globals.updater = AutoUpdater.new()
 	Globals.input = InputManager.new()
 	Globals.input:findGamepads()
+	Globals.sound = SoundManager.new()
 
 	Gamestate.registerEvents()
 	Gamestate.switch(Globals.gamestates.mainMenu)

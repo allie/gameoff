@@ -88,10 +88,12 @@ end
 function MainMenu:update(dt)
 	-- Select the highlighted menu item
 	if Globals.input:wasActivated('a') or Globals.input:wasActivated('start') then
+		Globals.sound:play('ui-select')
 		self:enterMenuItem()
 
 	-- Move cursor up
 	elseif Globals.input:wasActivated('up') then
+		Globals.sound:play('ui-move')
 		self.selectedItem = self.selectedItem - 1
 		if self.selectedItem < 1 then
 			self.selectedItem = #self.menuItems
@@ -99,6 +101,7 @@ function MainMenu:update(dt)
 
 	-- Move cursor down
 	elseif Globals.input:wasActivated('down') then
+		Globals.sound:play('ui-move')
 		self.selectedItem = self.selectedItem + 1
 		if self.selectedItem > #self.menuItems then
 			self.selectedItem = 1
