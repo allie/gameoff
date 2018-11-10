@@ -12,8 +12,10 @@ bitser = require('lib.bitser.bitser')
 local Config = require('core.config')
 local AutoUpdater = require('core.autoupdater')
 local InputManager = require('core.inputmanager')
-local Play = require('gamestates.play')
-local Menu = require('gamestates.mainmenu')
+
+-- Game states
+local MenuState = require('gamestates.mainmenu')
+local PlayState = require('gamestates.play')
 
 --- Table holding anything that should be easily accessible anywhere within the game
 Globals = {}
@@ -24,12 +26,17 @@ function love.load()
 
 	Globals.config = Config.new('settings.lua')
 
+	Globals.gamestates = {
+		mainMenu = MenuState,
+		play = PlayState
+	}
+
 	Globals.updater = AutoUpdater.new()
 	Globals.input = InputManager.new()
 	Globals.input:findGamepads()
 
 	Gamestate.registerEvents()
-	Gamestate.switch(Play)
+	Gamestate.switch(Globals.gamestates.mainMenu)
 end
 
 function love.update(dt)

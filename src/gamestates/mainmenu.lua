@@ -3,10 +3,10 @@
 
 local Background = require('core.background')
 
-local Menu = {}
-Menu.__index = Menu
+local MainMenu = {}
+MainMenu.__index = MainMenu
 
-function Menu:init()
+function MainMenu:init()
 	self.itemsStart = love.graphics.getHeight() / 2
 	self.itemSize = 64
 	self.itemSpacing = 16
@@ -37,11 +37,11 @@ function Menu:init()
 	self.bg:autoscroll(3, 2, 'right')
 end
 
-function Menu:enter()
+function MainMenu:enter()
 
 end
 
-function Menu:draw()
+function MainMenu:draw()
 	-- Draw the background
 	self.bg:draw()
 
@@ -76,8 +76,34 @@ function Menu:draw()
 	end
 end
 
-function Menu:update(dt)
-
+--- Enter the game state associated with the current menu option
+function MainMenu:enterMenuItem()
+	if self.menuItems[self.selectedItem] == 'Play' then
+		Gamestate.switch(Globals.gamestates.play)
+	end
 end
 
-return Menu
+--- Update the main menu
+-- @param dt Delta time
+function MainMenu:update(dt)
+	-- Select the highlighted menu item
+	if Globals.input:wasActivated('a') or Globals.input:wasActivated('start') then
+		self:enterMenuItem()
+
+	-- Move cursor up
+	elseif Globals.input:wasActivated('up') then
+		self.selectedItem = self.selectedItem - 1
+		if self.selectedItem < 1 then
+			self.selectedItem = #self.menuItems
+		end
+
+	-- Move cursor down
+	elseif Globals.input:wasActivated('down') then
+		self.selectedItem = self.selectedItem + 1
+		if self.selectedItem > #self.menuItems then
+			self.selectedItem = 1
+		end
+	end
+end
+
+return MainMenu

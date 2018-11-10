@@ -2,7 +2,7 @@
 
 return {
 	keyboardBindings = {
-		a = nil,
+		a = 'return',
 		b = 'space',
 		x = 'q',
 		y = 'e',
