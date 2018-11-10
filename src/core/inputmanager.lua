@@ -240,6 +240,9 @@ function InputManager.new()
 	--- Currently enabled gamepad
 	instance.gamepad = nil
 
+	-- Load the SDL controller mapping db
+	love.joystick.loadGamepadMappings('assets/data/gamecontrollerdb.txt')
+
 	-- Add input manager to the autoupdater
 	Globals.updater:add(instance)
 
