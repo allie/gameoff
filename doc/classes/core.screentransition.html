@@ -33,6 +33,7 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
+<li><a href="#Fields">Fields</a></li>
 </ul>
 
 
@@ -43,7 +44,7 @@
   <li><a href="../classes/core.config.html">core.config</a></li>
   <li><a href="../classes/core.gameobject.html">core.gameobject</a></li>
   <li><a href="../classes/core.inputmanager.html">core.inputmanager</a></li>
-  <li><a href="../classes/core.screentransition.html">core.screentransition</a></li>
+  <li><strong>core.screentransition</strong></li>
   <li><a href="../classes/core.soundmanager.html">core.soundmanager</a></li>
   <li><a href="../classes/core.sprite.html">core.sprite</a></li>
   <li><a href="../classes/hud.health.html">hud.health</a></li>
@@ -57,7 +58,7 @@
   <li><a href="../classes/player.parts.legs.html">player.parts.legs</a></li>
   <li><a href="../classes/player.parts.legs.test.html">player.parts.legs.test</a></li>
   <li><a href="../classes/player.parts.torso.html">player.parts.torso</a></li>
-  <li><strong>player.parts.torsos.test</strong></li>
+  <li><a href="../classes/player.parts.torsos.test.html">player.parts.torsos.test</a></li>
   <li><a href="../classes/player.player.html">player.player</a></li>
 </ul>
 <h2>Modules</h2>
@@ -79,22 +80,45 @@
 
 <div id="content">
 
-<h1>Class <code>player.parts.torsos.test</code></h1>
-<p>Test torso</p>
+<h1>Class <code>core.screentransition</code></h1>
+<p>A transition animation to play between game state changes</p>
 <p>
 
 </p>
-    <h3>See also:</h3>
-    <ul>
-         <a href="../classes/player.parts.torso.html#">player.parts.torso</a>
-    </ul>
 
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Test.new">Test.new ()</a></td>
+	<td class="name" nowrap><a href="#ScreenTransition.new">ScreenTransition.new (type, duration)</a></td>
 	<td class="summary">Constructor</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ScreenTransition:update">ScreenTransition:update (dt)</a></td>
+	<td class="summary">Update the screen transition</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ScreenTransition:draw">ScreenTransition:draw ()</a></td>
+	<td class="summary">Draw the transition</td>
+	</tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#instance.type">instance.type</a></td>
+	<td class="summary">The type of transition this is</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#instance.duration">instance.duration</a></td>
+	<td class="summary">The duration of the transition</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#instance.timer">instance.timer</a></td>
+	<td class="summary">The elapsed time of the transition</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#instance.finished">instance.finished</a></td>
+	<td class="summary">Whether or not the transition has been finished</td>
 	</tr>
 </table>
 
@@ -106,19 +130,122 @@
     Methods
     <dl class="function">
     <dt>
-    <a name = "Test.new"></a>
-    <strong>Test.new ()</strong>
+    <a name = "ScreenTransition.new"></a>
+    <strong>ScreenTransition.new (type, duration)</strong>
     </dt>
     <dd>
     Constructor
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">type</span>
+         The type of transition to use
+        </li>
+        <li><span class="parameter">duration</span>
+         The duration of the transition
+        </li>
+    </ul>
 
     <h3>Returns:</h3>
     <ol>
 
-        A new Test instance
+        A new ScreenTransition instance
     </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ScreenTransition:update"></a>
+    <strong>ScreenTransition:update (dt)</strong>
+    </dt>
+    <dd>
+    Update the screen transition
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dt</span>
+         Delta time
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ScreenTransition:draw"></a>
+    <strong>ScreenTransition:draw ()</strong>
+    </dt>
+    <dd>
+    Draw the transition
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "instance.type"></a>
+    <strong>instance.type</strong>
+    </dt>
+    <dd>
+    The type of transition this is
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "instance.duration"></a>
+    <strong>instance.duration</strong>
+    </dt>
+    <dd>
+    The duration of the transition
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "instance.timer"></a>
+    <strong>instance.timer</strong>
+    </dt>
+    <dd>
+    The elapsed time of the transition
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "instance.finished"></a>
+    <strong>instance.finished</strong>
+    </dt>
+    <dd>
+    Whether or not the transition has been finished
+
+
+
 
 
 

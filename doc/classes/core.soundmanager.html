@@ -46,13 +46,13 @@
   <li><a href="../classes/core.gameobject.html">core.gameobject</a></li>
   <li><a href="../classes/core.inputmanager.html">core.inputmanager</a></li>
   <li><a href="../classes/core.screentransition.html">core.screentransition</a></li>
-  <li><a href="../classes/core.soundmanager.html">core.soundmanager</a></li>
+  <li><strong>core.soundmanager</strong></li>
   <li><a href="../classes/core.sprite.html">core.sprite</a></li>
   <li><a href="../classes/hud.health.html">hud.health</a></li>
   <li><a href="../classes/hud.hud.html">hud.hud</a></li>
   <li><a href="../classes/item.item.html">item.item</a></li>
   <li><a href="../classes/item.items.redpotion.html">item.items.redpotion</a></li>
-  <li><strong>level.level</strong></li>
+  <li><a href="../classes/level.level.html">level.level</a></li>
   <li><a href="../classes/level.levels.test.html">level.levels.test</a></li>
   <li><a href="../classes/player.parts.head.html">player.parts.head</a></li>
   <li><a href="../classes/player.parts.heads.test.html">player.parts.heads.test</a></li>
@@ -81,8 +81,8 @@
 
 <div id="content">
 
-<h1>Class <code>level.level</code></h1>
-<p>Base class for levels</p>
+<h1>Class <code>core.soundmanager</code></h1>
+<p>A class to manage loading and playback of sounds</p>
 <p>
 
 </p>
@@ -91,62 +91,38 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Level.new">Level.new (mapFile)</a></td>
+	<td class="name" nowrap><a href="#SoundManager.new">SoundManager.new ()</a></td>
 	<td class="summary">Constructor</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Level:update">Level:update (dt)</a></td>
-	<td class="summary">Update the game world</td>
+	<td class="name" nowrap><a href="#SoundManager:play">SoundManager:play (sound)</a></td>
+	<td class="summary">Play a sound</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Level:draw">Level:draw ()</a></td>
-	<td class="summary">Draw the level on the screen</td>
+	<td class="name" nowrap><a href="#SoundManager:startTrack">SoundManager:startTrack (track)</a></td>
+	<td class="summary">Start a looping music track</td>
 	</tr>
 </table>
 <h2><a href="#Tables">Tables</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#instance.bgOffset">instance.bgOffset</a></td>
-	<td class="summary">Background offset</td>
+	<td class="name" nowrap><a href="#instance.sounds">instance.sounds</a></td>
+	<td class="summary">Collection of sounds</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#instance.bgColour">instance.bgColour</a></td>
-	<td class="summary">Background colour of the level</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#instance.objects">instance.objects</a></td>
-	<td class="summary">Game objects affected by gravity</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#instance.itemMap">instance.itemMap</a></td>
-	<td class="summary">Item to class mapping</td>
+	<td class="name" nowrap><a href="#instance.tracks">instance.tracks</a></td>
+	<td class="summary">Collection of music tracks</td>
 	</tr>
 </table>
 <h2><a href="#Fields">Fields</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#instance.bg">instance.bg</a></td>
-	<td class="summary">Background image</td>
+	<td class="name" nowrap><a href="#instance.effectVolume">instance.effectVolume</a></td>
+	<td class="summary">Volume of sound effects</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#instance.bg">instance.bg</a></td>
-	<td class="summary">Background object</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#instance.world">instance.world</a></td>
-	<td class="summary">bump world</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#instance.gravity">instance.gravity</a></td>
-	<td class="summary">Gravity of the world in units/s^2</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#instance.map">instance.map</a></td>
-	<td class="summary">Tiled map</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#instance.camera">instance.camera</a></td>
-	<td class="summary">Camera</td>
+	<td class="name" nowrap><a href="#instance.musicVolume">instance.musicVolume</a></td>
+	<td class="summary">Volume of music tracks</td>
 	</tr>
 </table>
 
@@ -158,24 +134,18 @@
     Methods
     <dl class="function">
     <dt>
-    <a name = "Level.new"></a>
-    <strong>Level.new (mapFile)</strong>
+    <a name = "SoundManager.new"></a>
+    <strong>SoundManager.new ()</strong>
     </dt>
     <dd>
     Constructor
 
 
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">mapFile</span>
-         Path to the Tiled map file
-        </li>
-    </ul>
 
     <h3>Returns:</h3>
     <ol>
 
-        A new Level instance
+        A new SoundManager instance
     </ol>
 
 
@@ -183,17 +153,17 @@
 
 </dd>
     <dt>
-    <a name = "Level:update"></a>
-    <strong>Level:update (dt)</strong>
+    <a name = "SoundManager:play"></a>
+    <strong>SoundManager:play (sound)</strong>
     </dt>
     <dd>
-    Update the game world
+    Play a sound
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">dt</span>
-         Delta time
+        <li><span class="parameter">sound</span>
+         The name of the sound to be played
         </li>
     </ul>
 
@@ -203,13 +173,19 @@
 
 </dd>
     <dt>
-    <a name = "Level:draw"></a>
-    <strong>Level:draw ()</strong>
+    <a name = "SoundManager:startTrack"></a>
+    <strong>SoundManager:startTrack (track)</strong>
     </dt>
     <dd>
-    Draw the level on the screen
+    Start a looping music track
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">track</span>
+         The name of the track to be played
+        </li>
+    </ul>
 
 
 
@@ -221,49 +197,26 @@
 
     <dl class="function">
     <dt>
-    <a name = "instance.bgOffset"></a>
-    <strong>instance.bgOffset</strong>
+    <a name = "instance.sounds"></a>
+    <strong>instance.sounds</strong>
     </dt>
     <dd>
-    Background offset
+    Collection of sounds
 
 
     <h3>Fields:</h3>
     <ul>
-        <li><span class="parameter">x</span>
-         X offset
-        </li>
-        <li><span class="parameter">y</span>
-         Y offset
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "instance.bgColour"></a>
-    <strong>instance.bgColour</strong>
-    </dt>
-    <dd>
-    Background colour of the level
-
-
-    <h3>Fields:</h3>
-    <ul>
-        <li><span class="parameter">r</span>
+        <li><span class="parameter">[ui-move]</span>
 
 
 
         </li>
-        <li><span class="parameter">g</span>
+        <li><span class="parameter">[ui-select]</span>
 
 
 
         </li>
-        <li><span class="parameter">b</span>
+        <li><span class="parameter">[player-jump]</span>
 
 
 
@@ -276,30 +229,16 @@
 
 </dd>
     <dt>
-    <a name = "instance.objects"></a>
-    <strong>instance.objects</strong>
+    <a name = "instance.tracks"></a>
+    <strong>instance.tracks</strong>
     </dt>
     <dd>
-    Game objects affected by gravity
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "instance.itemMap"></a>
-    <strong>instance.itemMap</strong>
-    </dt>
-    <dd>
-    Item to class mapping
+    Collection of music tracks
 
 
     <h3>Fields:</h3>
     <ul>
-        <li><span class="parameter">[redpotion]</span>
+        <li><span class="parameter">[menu]</span>
 
 
 
@@ -316,11 +255,11 @@
 
     <dl class="function">
     <dt>
-    <a name = "instance.bg"></a>
-    <strong>instance.bg</strong>
+    <a name = "instance.effectVolume"></a>
+    <strong>instance.effectVolume</strong>
     </dt>
     <dd>
-    Background image
+    Volume of sound effects
 
 
 
@@ -330,71 +269,11 @@
 
 </dd>
     <dt>
-    <a name = "instance.bg"></a>
-    <strong>instance.bg</strong>
+    <a name = "instance.musicVolume"></a>
+    <strong>instance.musicVolume</strong>
     </dt>
     <dd>
-    Background object
-
-
-
-
-
-    <h3>See also:</h3>
-    <ul>
-         <a href="../classes/core.background.html#">core.background</a>
-    </ul>
-
-
-</dd>
-    <dt>
-    <a name = "instance.world"></a>
-    <strong>instance.world</strong>
-    </dt>
-    <dd>
-    bump world
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "instance.gravity"></a>
-    <strong>instance.gravity</strong>
-    </dt>
-    <dd>
-    Gravity of the world in units/s^2
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "instance.map"></a>
-    <strong>instance.map</strong>
-    </dt>
-    <dd>
-    Tiled map
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "instance.camera"></a>
-    <strong>instance.camera</strong>
-    </dt>
-    <dd>
-    Camera
+    Volume of music tracks
 
 
 
