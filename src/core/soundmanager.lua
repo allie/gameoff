@@ -16,6 +16,11 @@ function SoundManager.new()
 		['player-jump'] = love.audio.newSource('assets/audio/SFX_Jump04.ogg', 'stream')
 	}
 
+	--- Collection of music tracks
+	instance.tracks = {
+		['menu'] = love.audio.newSource('assets/audio/Music1.mp3', 'stream')
+	}
+
 	setmetatable(instance, SoundManager)
 	return instance
 end
@@ -25,6 +30,15 @@ end
 function SoundManager:play(sound)
 	if self.sounds[sound] ~= nil then
 		self.sounds[sound]:play()
+	end
+end
+
+--- Start a looping music track
+-- @param track The name of the track to be played
+function SoundManager:startTrack(track)
+	if self.tracks[track] ~= nil then
+		self.tracks[track]:setLooping(true)
+		self.tracks[track]:play()
 	end
 end
 

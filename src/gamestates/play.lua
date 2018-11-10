@@ -13,8 +13,6 @@ local Play = {}
 Play.__index = menu
 
 function Play:init()
-	-- self.music = love.audio.newSource('assets/audio/test.mp3', 'stream')
-
 	Globals.player = Player.new()
 	Globals.player:setHead(TestHead.new())
 	Globals.player:setTorso(TestTorso.new())
@@ -26,7 +24,7 @@ function Play:init()
 end
 
 function Play:enter()
-	-- love.audio.play(self.music)
+
 end
 
 function Play:draw()

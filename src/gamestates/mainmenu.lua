@@ -35,6 +35,8 @@ function MainMenu:init()
 
 	self.bg:autoscroll(2, 1, 'right')
 	self.bg:autoscroll(3, 2, 'right')
+
+	Globals.sound:startTrack('menu')
 end
 
 function MainMenu:enter()
