@@ -12,13 +12,14 @@ function AutoUpdater.new()
 	--- The collection of objects managed by this class
 	instance.objects = {}
 
-	-- Listen for object-add events
-	Signal.register('object-add', function(object)
-		table.insert(instance.objects, object)
-	end)
-
 	setmetatable(instance, AutoUpdater)
 	return instance
+end
+
+--- Add a new object to the updater
+-- @param object The object to add
+function AutoUpdater:add(object)
+	table.insert(self.objects, object)
 end
 
 --- Update all objects

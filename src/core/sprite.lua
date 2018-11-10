@@ -61,7 +61,7 @@ function Sprite.new(file, fw, frames, duration)
 
 	-- Add self to the global sprite manager
 	if instance.animated then
-		Signal.emit('object-add', instance)
+		Globals.updater:add(instance)
 	end
 
 	setmetatable(instance, Sprite)

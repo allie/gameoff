@@ -241,7 +241,7 @@ function InputManager.new()
 	instance.gamepad = nil
 
 	-- Add input manager to the autoupdater
-	Signal.emit('object-add', instance)
+	Globals.updater:add(instance)
 
 	setmetatable(instance, InputManager)
 	return instance
