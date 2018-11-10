@@ -1,10 +1,6 @@
 --- Base class for levels
 -- @classmod level.level
 
-local bump = require('lib.bump.bump')
-local sti = require('lib.sti.sti')
-local Camera = require('lib.hump.camera')
-
 local RedPotion = require('item.items.redpotion')
 
 local Level = {}
@@ -29,7 +25,7 @@ function Level.new(player, mapFile)
 	instance.bgColour = {r=100, g=149, b=237}
 
 	--- Background object
-	-- @see level.background
+	-- @see core.background
 	instance.bg = nil
 
 	--- bump world

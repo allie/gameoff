@@ -33,12 +33,13 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
 </ul>
 
 
 <h2>Classes</h2>
 <ul class="nowrap">
-  <li><a href="../classes/core.autoupdater.html">core.autoupdater</a></li>
+  <li><strong>core.autoupdater</strong></li>
   <li><a href="../classes/core.background.html">core.background</a></li>
   <li><a href="../classes/core.gameobject.html">core.gameobject</a></li>
   <li><a href="../classes/core.inputmanager.html">core.inputmanager</a></li>
@@ -54,7 +55,7 @@
   <li><a href="../classes/player.parts.legs.html">player.parts.legs</a></li>
   <li><a href="../classes/player.parts.legs.test.html">player.parts.legs.test</a></li>
   <li><a href="../classes/player.parts.torso.html">player.parts.torso</a></li>
-  <li><strong>player.parts.torsos.test</strong></li>
+  <li><a href="../classes/player.parts.torsos.test.html">player.parts.torsos.test</a></li>
   <li><a href="../classes/player.player.html">player.player</a></li>
 </ul>
 <h2>Modules</h2>
@@ -73,22 +74,29 @@
 
 <div id="content">
 
-<h1>Class <code>player.parts.torsos.test</code></h1>
-<p>Test torso</p>
+<h1>Class <code>core.autoupdater</code></h1>
+<p>A global manager that automatically updates all items given to it</p>
 <p>
 
 </p>
-    <h3>See also:</h3>
-    <ul>
-         <a href="../classes/player.parts.torso.html#">player.parts.torso</a>
-    </ul>
 
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Test.new">Test.new ()</a></td>
+	<td class="name" nowrap><a href="#AutoUpdater.new">AutoUpdater.new ()</a></td>
 	<td class="summary">Constructor</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AutoUpdater:update">AutoUpdater:update (dt)</a></td>
+	<td class="summary">Update all objects</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#instance.objects">instance.objects</a></td>
+	<td class="summary">The collection of objects managed by this class</td>
 	</tr>
 </table>
 
@@ -100,8 +108,8 @@
     Methods
     <dl class="function">
     <dt>
-    <a name = "Test.new"></a>
-    <strong>Test.new ()</strong>
+    <a name = "AutoUpdater.new"></a>
+    <strong>AutoUpdater.new ()</strong>
     </dt>
     <dd>
     Constructor
@@ -111,8 +119,46 @@
     <h3>Returns:</h3>
     <ol>
 
-        A new Test instance
+        A new AutoUpdater instance
     </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AutoUpdater:update"></a>
+    <strong>AutoUpdater:update (dt)</strong>
+    </dt>
+    <dd>
+    Update all objects
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dt</span>
+         Delta time
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "instance.objects"></a>
+    <strong>instance.objects</strong>
+    </dt>
+    <dd>
+    The collection of objects managed by this class
+
+
+
 
 
 

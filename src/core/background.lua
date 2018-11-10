@@ -1,5 +1,5 @@
 --- A parallax scrolling background
--- @classmod level.background
+-- @classmod core.background
 
 local Background = {}
 Background.__index = Background
@@ -55,6 +55,9 @@ function Background.new(images, intensity, scale, xOffset, yOffset)
 	--- Autoscrolling layers (none by default)
 	instance.autoscrollLayers = {}
 
+	-- Add background to auto updater
+	Signal.emit('object-add', instance)
+
 	setmetatable(instance, Background)
 	return instance
 end
@@ -90,6 +93,10 @@ end
 --- Draw the background
 -- @param scroll How far along the map's X axis to calculate for; between 0 and 1
 function Background:draw(scroll)
+	love.graphics.setColor(1, 1, 1)
+
+	scroll = scroll or 0.5
+
 	-- Convert scroll to be between -1 and 1 for convenience
 	scroll = scroll * 2 - 1
 

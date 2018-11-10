@@ -3,7 +3,7 @@
 -- @see level.level
 
 local Level = require('level.level')
-local Background = require('level.background')
+local Background = require('core.background')
 
 local Test = {}
 Test.__index = Test

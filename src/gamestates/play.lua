@@ -1,9 +1,6 @@
 --- Gameplay game state
 -- @module gamestates.play
 
-local Signal = require('lib.hump.signal')
-
-local SpriteManager = require('core.spritemanager')
 local Sprite = require('core.sprite')
 local Player = require('player.player')
 local TestHead = require('player.parts.heads.test')
@@ -18,8 +15,6 @@ Play.__index = menu
 function Play:init()
 	-- self.music = love.audio.newSource('assets/audio/test.mp3', 'stream')
 
-	self.spriteManager = SpriteManager.new()
-
 	self.player = Player.new()
 	self.player:setHead(TestHead.new())
 	self.player:setTorso(TestTorso.new())
@@ -28,7 +23,6 @@ function Play:init()
 	self.level = TestLevel.new(self.player)
 
 	self.hud = Hud.new()
-	self.sm = SpriteManager.new()
 end
 
 function Play:enter()
@@ -40,17 +34,8 @@ function Play:draw()
 	self.hud:draw()
 end
 
-function Play:keypressed(key, code)
-	self.player:updateInput(key, true)
-end
-
-function Play:keyreleased(key, code)
-	self.player:updateInput(key, false)
-end
-
 function Play:update(dt)
 	self.level:update(dt)
-	self.spriteManager:update(dt)
 end
 
 return Play

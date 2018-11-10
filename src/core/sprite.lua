@@ -2,8 +2,6 @@
 -- @classmod core.sprite
 -- @todo Add automatic updating across the whole game
 
-local Signal = require('lib.hump.signal')
-
 local Sprite = {}
 Sprite.__index = Sprite
 
@@ -62,7 +60,9 @@ function Sprite.new(file, fw, frames, duration)
 	end
 
 	-- Add self to the global sprite manager
-	Signal.emit('sprite-add', instance)
+	if instance.animated then
+		Signal.emit('object-add', instance)
+	end
 
 	setmetatable(instance, Sprite)
 	return instance

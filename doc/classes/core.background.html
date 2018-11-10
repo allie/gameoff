@@ -40,13 +40,15 @@
 
 <h2>Classes</h2>
 <ul class="nowrap">
+  <li><a href="../classes/core.autoupdater.html">core.autoupdater</a></li>
+  <li><strong>core.background</strong></li>
   <li><a href="../classes/core.gameobject.html">core.gameobject</a></li>
+  <li><a href="../classes/core.inputmanager.html">core.inputmanager</a></li>
   <li><a href="../classes/core.sprite.html">core.sprite</a></li>
   <li><a href="../classes/hud.health.html">hud.health</a></li>
   <li><a href="../classes/hud.hud.html">hud.hud</a></li>
   <li><a href="../classes/item.item.html">item.item</a></li>
   <li><a href="../classes/item.items.redpotion.html">item.items.redpotion</a></li>
-  <li><strong>level.background</strong></li>
   <li><a href="../classes/level.level.html">level.level</a></li>
   <li><a href="../classes/level.levels.test.html">level.levels.test</a></li>
   <li><a href="../classes/player.parts.head.html">player.parts.head</a></li>
@@ -59,7 +61,8 @@
 </ul>
 <h2>Modules</h2>
 <ul class="nowrap">
-  <li><a href="../modules/gamestates.menu.html">gamestates.menu</a></li>
+  <li><a href="../modules/gamestates.gamepad.html">gamestates.gamepad</a></li>
+  <li><a href="../modules/gamestates.mainmenu.html">gamestates.mainmenu</a></li>
   <li><a href="../modules/gamestates.play.html">gamestates.play</a></li>
 </ul>
 <h2>Scripts</h2>
@@ -72,7 +75,7 @@
 
 <div id="content">
 
-<h1>Class <code>level.background</code></h1>
+<h1>Class <code>core.background</code></h1>
 <p>A parallax scrolling background</p>
 <p>
 
@@ -84,6 +87,14 @@
 	<tr>
 	<td class="name" nowrap><a href="#Background.new">Background.new (images[, intensity[, scale[, xOffset[, yOffset]]]])</a></td>
 	<td class="summary">Constructor</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Background:autoscroll">Background:autoscroll (layer, speed, direction)</a></td>
+	<td class="summary">Enable autoscrolling on a layer</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Background:update">Background:update (dt)</a></td>
+	<td class="summary">Update the background autoscrolling</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Background:draw">Background:draw (scroll)</a></td>
@@ -104,6 +115,14 @@
 	<td class="name" nowrap><a href="#instance.offset">instance.offset</a></td>
 	<td class="summary">Drawing offset</td>
 	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#instance.bounds">instance.bounds</a></td>
+	<td class="summary">The bounds to render within</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#instance.autoscrollLayers">instance.autoscrollLayers</a></td>
+	<td class="summary">Autoscrolling layers (none by default)</td>
+	</tr>
 </table>
 <h2><a href="#Fields">Fields</a></h2>
 <table class="function_list">
@@ -116,12 +135,12 @@
 	<td class="summary">Scale to draw the background with</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#instance.limit">instance.limit</a></td>
-	<td class="summary">X coordinate limits (for drawing along the X axis)</td>
+	<td class="name" nowrap><a href="#instance.layerWidth">instance.layerWidth</a></td>
+	<td class="summary">Width of one layer</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#instance.canvas">instance.canvas</a></td>
-	<td class="summary">The canvas to render to</td>
+	<td class="name" nowrap><a href="#instance.limit">instance.limit</a></td>
+	<td class="summary">X coordinate limits (for drawing along the X axis)</td>
 	</tr>
 </table>
 
@@ -168,6 +187,58 @@
 
         A new Level instance
     </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Background:autoscroll"></a>
+    <strong>Background:autoscroll (layer, speed, direction)</strong>
+    </dt>
+    <dd>
+    Enable autoscrolling on a layer
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">layer</span>
+
+
+
+        </li>
+        <li><span class="parameter">speed</span>
+
+
+
+        </li>
+        <li><span class="parameter">direction</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Background:update"></a>
+    <strong>Background:update (dt)</strong>
+    </dt>
+    <dd>
+    Update the background autoscrolling
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dt</span>
+         Delta time
+        </li>
+    </ul>
+
 
 
 
@@ -257,6 +328,43 @@
 
 
 </dd>
+    <dt>
+    <a name = "instance.bounds"></a>
+    <strong>instance.bounds</strong>
+    </dt>
+    <dd>
+    The bounds to render within
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">w</span>
+         Width
+        </li>
+        <li><span class="parameter">h</span>
+         Height
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "instance.autoscrollLayers"></a>
+    <strong>instance.autoscrollLayers</strong>
+    </dt>
+    <dd>
+    Autoscrolling layers (none by default)
+
+
+
+
+
+
+
+</dd>
 </dl>
     <h2 class="section-header "><a name="Fields"></a>Fields</h2>
 
@@ -290,11 +398,11 @@
 
 </dd>
     <dt>
-    <a name = "instance.limit"></a>
-    <strong>instance.limit</strong>
+    <a name = "instance.layerWidth"></a>
+    <strong>instance.layerWidth</strong>
     </dt>
     <dd>
-    X coordinate limits (for drawing along the X axis)
+    Width of one layer
 
 
 
@@ -304,11 +412,11 @@
 
 </dd>
     <dt>
-    <a name = "instance.canvas"></a>
-    <strong>instance.canvas</strong>
+    <a name = "instance.limit"></a>
+    <strong>instance.limit</strong>
     </dt>
     <dd>
-    The canvas to render to
+    X coordinate limits (for drawing along the X axis)
 
 
 
@@ -324,7 +432,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2018-11-04 23:20:22 </i>
+<i style="float:right;">Last updated 2018-11-09 22:06:11 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

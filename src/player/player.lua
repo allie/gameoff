@@ -143,36 +143,6 @@ function Player:adjustAABB()
 	self.canvas = love.graphics.newCanvas(self.aabb.w, self.aabb.h)
 end
 
---- Update the current input state
--- @param input The last pressed or released key
--- @param pressed Whether the key was pressed or released
-function Player:updateInput(input, pressed)
-	-- Return if this key isn't applicable
-	if self.validKeys[input] == nil then
-		return
-	end
-
-	-- Add pressed key to the input state if it's not there
-	if pressed then
-		for i, key in ipairs(self.input) do
-			if key == input then
-				return
-			end
-		end
-
-		table.insert(self.input, input)
-
-	-- Remove released key from the input state if it's there
-	else
-		for i = #self.input, 1, -1 do
-			if self.input[i] == input then
-				table.remove(self.input, i)
-				return
-			end
-		end
-	end
-end
-
 --- Update the player (handle input, etc.)
 -- @param dt Delta time
 -- @todo Add max velocity
@@ -182,14 +152,14 @@ function Player:update(dt)
 	if self.velocity.y == 0 then
 		self.velocity.x = 0
 
-		for i, key in ipairs(self.input) do
+		for i, key in ipairs(Globals.input.stack) do
 			-- Left
-			if key == 'a' or key == 'left' then
+			if key == 'left' then
 				self.velocity.x = -1 * dt
 				self.facing = -1
 
 			-- Right
-			elseif key == 'd' or key == 'right' then
+			elseif key == 'right' then
 				self.velocity.x = 1 * dt
 				self.facing = 1
 			end
@@ -197,7 +167,7 @@ function Player:update(dt)
 	end
 
 	-- If space was pressed, begin a jump
-	if self.input[#self.input] == 'space' and self.velocity.y == 0 then
+	if Globals.input:wasActivated('b') and self.velocity.y == 0 then
 		if self.weight == 0 then
 			self.velocity.y = 0
 		else
