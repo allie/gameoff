@@ -155,23 +155,23 @@ function Player:update(dt)
 		for i, key in ipairs(Globals.input.stack) do
 			-- Left
 			if key == 'left' then
-				self.velocity.x = -1 * dt
+				self.velocity.x = -100
 				self.facing = -1
 
 			-- Right
 			elseif key == 'right' then
-				self.velocity.x = 1 * dt
+				self.velocity.x = 100
 				self.facing = 1
 			end
 		end
 	end
 
 	-- If space was pressed, begin a jump
-	if Globals.input:wasActivated('b') and self.velocity.y == 0 then
+	if Globals.input:wasActivated('a') and self.velocity.y == 0 then
 		if self.weight == 0 then
 			self.velocity.y = 0
 		else
-			self.velocity.y = -6 / self.weight
+			self.velocity.y = -7.8 / self.weight
 		end
 	end
 end

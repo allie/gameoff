@@ -34,7 +34,7 @@ function Level.new(mapFile)
 	instance.objects = {}
 
 	--- Gravity of the world in units/s^2
-	instance.gravity = 20
+	instance.gravity = 30
 
 	--- Tiled map
 	instance.map = sti(mapFile, {'bump'})
@@ -105,10 +105,14 @@ function Level:update(dt)
 	end
 
 	-- Update the positions of game objects accounting for gravity
-	local gdiff = dt * self.gravity
+	local gdiff = self.gravity * dt
+
 	for i, obj in ipairs(self.objects) do
-		local newY = obj.aabb.y + obj.velocity.y + gdiff
-		local ax, ay, cols, len = self.world:move(obj, obj.aabb.x + (obj.velocity.x * 120), newY)
+		local ydiff = obj.velocity.y * dt * 60
+		local xdiff = obj.velocity.x * dt
+
+		local newY = obj.aabb.y + ydiff + gdiff
+		local ax, ay, cols, len = self.world:move(obj, obj.aabb.x + xdiff, newY)
 
 		obj.velocity.y = obj.velocity.y + gdiff
 
