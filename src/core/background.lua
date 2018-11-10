@@ -56,7 +56,7 @@ function Background.new(images, intensity, scale, xOffset, yOffset)
 	instance.autoscrollLayers = {}
 
 	-- Add background to auto updater
-	Signal.emit('object-add', instance)
+	Globals.updater:add(instance)
 
 	setmetatable(instance, Background)
 	return instance
