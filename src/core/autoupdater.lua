@@ -27,6 +27,12 @@ end
 function AutoUpdater:update(dt)
 	for i, object in ipairs(self.objects) do
 		object:update(dt)
+
+		-- If the object has a 'finished' property and it's marked as true,
+		-- remove it from the updater
+		if object.finished ~= nil and object.finished then
+			self.objects[i] = nil
+		end
 	end
 end
 

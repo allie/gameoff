@@ -21,6 +21,12 @@ function SoundManager.new()
 		['menu'] = love.audio.newSource('assets/audio/Music1.mp3', 'stream')
 	}
 
+	--- Volume of sound effects
+	instance.effectVolume = 0.1
+
+	--- Volume of music tracks
+	instance.musicVolume = 0.7
+
 	setmetatable(instance, SoundManager)
 	return instance
 end
@@ -29,6 +35,7 @@ end
 -- @param sound The name of the sound to be played
 function SoundManager:play(sound)
 	if self.sounds[sound] ~= nil then
+		self.sounds[sound]:setVolume(Globals.config.masterVolume * self.effectVolume)
 		self.sounds[sound]:play()
 	end
 end

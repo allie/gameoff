@@ -2,6 +2,7 @@
 -- @module gamestates.mainmenu
 
 local Background = require('core.background')
+local ScreenTransition = require('core.screentransition')
 
 local MainMenu = {}
 MainMenu.__index = MainMenu
@@ -36,11 +37,14 @@ function MainMenu:init()
 	self.bg:autoscroll(2, 1, 'right')
 	self.bg:autoscroll(3, 2, 'right')
 
-	Globals.sound:startTrack('menu')
+	self.fadein = nil
+	self.fadeout = nil
+
+	-- Globals.sound:startTrack('menu')
 end
 
 function MainMenu:enter()
-
+	self.fadein = ScreenTransition.new('fadein', 0.5)
 end
 
 function MainMenu:draw()
@@ -76,18 +80,41 @@ function MainMenu:draw()
 			'center'
 		)
 	end
+
+	-- Draw fade in if necessary
+	if self.fadein ~= nil and not self.fadein.finished then
+		self.fadein:draw()
+	else
+		self.fadein = nil
+	end
+
+	-- Draw fade out if necessary
+	if self.fadeout ~= nil and not self.fadeout.finished then
+		self.fadeout:draw()
+	end
 end
 
 --- Enter the game state associated with the current menu option
 function MainMenu:enterMenuItem()
 	if self.menuItems[self.selectedItem] == 'Play' then
-		Gamestate.switch(Globals.gamestates.play)
+		self.nextState = Globals.gamestates.play
 	end
+
+	self.fadeout = ScreenTransition.new('fadeout', 0.5)
 end
 
 --- Update the main menu
 -- @param dt Delta time
 function MainMenu:update(dt)
+	if self.fadeout ~= nil then
+		if self.fadeout.finished then
+			self.fadeout = nil
+			Gamestate.switch(self.nextState)
+		else
+			return
+		end
+	end
+
 	-- Select the highlighted menu item
 	if Globals.input:wasActivated('a') or Globals.input:wasActivated('start') then
 		Globals.sound:play('ui-select')

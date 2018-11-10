@@ -1,6 +1,8 @@
 -- Default settings
 
 return {
+	masterVolume = 1,
+
 	keyboardBindings = {
 		a = 'z',
 		b = 'x',
