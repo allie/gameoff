@@ -42,6 +42,7 @@
 <ul class="nowrap">
   <li><a href="../classes/core.autoupdater.html">core.autoupdater</a></li>
   <li><a href="../classes/core.background.html">core.background</a></li>
+  <li><a href="../classes/core.config.html">core.config</a></li>
   <li><a href="../classes/core.gameobject.html">core.gameobject</a></li>
   <li><strong>core.inputmanager</strong></li>
   <li><a href="../classes/core.sprite.html">core.sprite</a></li>
@@ -89,14 +90,6 @@
 	<td class="summary">Constructor</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#InputManager:loadBindings">InputManager:loadBindings ()</a></td>
-	<td class="summary">Load input bindings from a configuration file</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#InputManager:saveBindings">InputManager:saveBindings ()</a></td>
-	<td class="summary">Save input bindings to a configuration file</td>
-	</tr>
-	<tr>
 	<td class="name" nowrap><a href="#InputManager:findGamepads">InputManager:findGamepads ()</a></td>
 	<td class="summary">Find all connected gamepads</td>
 	</tr>
@@ -122,22 +115,6 @@
 	<tr>
 	<td class="name" nowrap><a href="#instance.lastState">instance.lastState</a></td>
 	<td class="summary">The input state of the previous tick</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#instance.keyboardBindings">instance.keyboardBindings</a></td>
-	<td class="summary">Keyboard button bindings for each input</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#instance.mouseBindings">instance.mouseBindings</a></td>
-	<td class="summary">Mouse bindings for each input</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#instance.gamepadButtonBindings">instance.gamepadButtonBindings</a></td>
-	<td class="summary">Gamepad button bindings for each input</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#instance.gamepadTriggerBindings">instance.gamepadTriggerBindings</a></td>
-	<td class="summary">Gamepad trigger bindings for each input</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#instance.stack">instance.stack</a></td>
@@ -185,34 +162,6 @@
 
         A new InputManager instance
     </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "InputManager:loadBindings"></a>
-    <strong>InputManager:loadBindings ()</strong>
-    </dt>
-    <dd>
-    Load input bindings from a configuration file
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "InputManager:saveBindings"></a>
-    <strong>InputManager:saveBindings ()</strong>
-    </dt>
-    <dd>
-    Save input bindings to a configuration file
-
-
-
 
 
 
@@ -446,266 +395,6 @@
 
 </dd>
     <dt>
-    <a name = "instance.keyboardBindings"></a>
-    <strong>instance.keyboardBindings</strong>
-    </dt>
-    <dd>
-    Keyboard button bindings for each input
-
-
-    <h3>Fields:</h3>
-    <ul>
-        <li><span class="parameter">a</span>
-         A button
-        </li>
-        <li><span class="parameter">b</span>
-         B button
-        </li>
-        <li><span class="parameter">x</span>
-         X button
-        </li>
-        <li><span class="parameter">y</span>
-         Y button
-        </li>
-        <li><span class="parameter">left</span>
-         Left movement control
-        </li>
-        <li><span class="parameter">right</span>
-         Right movement control
-        </li>
-        <li><span class="parameter">up</span>
-         Up movement control
-        </li>
-        <li><span class="parameter">down</span>
-         Down movement control
-        </li>
-        <li><span class="parameter">back</span>
-         Back button
-        </li>
-        <li><span class="parameter">start</span>
-         Start button
-        </li>
-        <li><span class="parameter">lb</span>
-         Left shoulder button
-        </li>
-        <li><span class="parameter">rb</span>
-         Right shoulder button
-        </li>
-        <li><span class="parameter">lt</span>
-         Left trigger
-        </li>
-        <li><span class="parameter">rt</span>
-         Right trigger
-        </li>
-        <li><span class="parameter">ls</span>
-         Left stick button
-        </li>
-        <li><span class="parameter">rs</span>
-         Right stick button
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "instance.mouseBindings"></a>
-    <strong>instance.mouseBindings</strong>
-    </dt>
-    <dd>
-    Mouse bindings for each input
-
-
-    <h3>Fields:</h3>
-    <ul>
-        <li><span class="parameter">a</span>
-         A button
-        </li>
-        <li><span class="parameter">b</span>
-         B button
-        </li>
-        <li><span class="parameter">x</span>
-         X button
-        </li>
-        <li><span class="parameter">y</span>
-         Y button
-        </li>
-        <li><span class="parameter">left</span>
-         Left movement control
-        </li>
-        <li><span class="parameter">right</span>
-         Right movement control
-        </li>
-        <li><span class="parameter">up</span>
-         Up movement control
-        </li>
-        <li><span class="parameter">down</span>
-         Down movement control
-        </li>
-        <li><span class="parameter">back</span>
-         Back button
-        </li>
-        <li><span class="parameter">start</span>
-         Start button
-        </li>
-        <li><span class="parameter">lb</span>
-         Left shoulder button
-        </li>
-        <li><span class="parameter">rb</span>
-         Right shoulder button
-        </li>
-        <li><span class="parameter">lt</span>
-         Left trigger
-        </li>
-        <li><span class="parameter">rt</span>
-         Right trigger
-        </li>
-        <li><span class="parameter">ls</span>
-         Left stick button
-        </li>
-        <li><span class="parameter">rs</span>
-         Right stick button
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "instance.gamepadButtonBindings"></a>
-    <strong>instance.gamepadButtonBindings</strong>
-    </dt>
-    <dd>
-    Gamepad button bindings for each input
-
-
-    <h3>Fields:</h3>
-    <ul>
-        <li><span class="parameter">a</span>
-         A button
-        </li>
-        <li><span class="parameter">b</span>
-         B button
-        </li>
-        <li><span class="parameter">x</span>
-         X button
-        </li>
-        <li><span class="parameter">y</span>
-         Y button
-        </li>
-        <li><span class="parameter">left</span>
-         Left movement control
-        </li>
-        <li><span class="parameter">right</span>
-         Right movement control
-        </li>
-        <li><span class="parameter">up</span>
-         Up movement control
-        </li>
-        <li><span class="parameter">down</span>
-         Down movement control
-        </li>
-        <li><span class="parameter">back</span>
-         Back button
-        </li>
-        <li><span class="parameter">start</span>
-         Start button
-        </li>
-        <li><span class="parameter">lb</span>
-         Left shoulder button
-        </li>
-        <li><span class="parameter">rb</span>
-         Right shoulder button
-        </li>
-        <li><span class="parameter">lt</span>
-         Left trigger
-        </li>
-        <li><span class="parameter">rt</span>
-         Right trigger
-        </li>
-        <li><span class="parameter">ls</span>
-         Left stick button
-        </li>
-        <li><span class="parameter">rs</span>
-         Right stick button
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "instance.gamepadTriggerBindings"></a>
-    <strong>instance.gamepadTriggerBindings</strong>
-    </dt>
-    <dd>
-    Gamepad trigger bindings for each input
-
-
-    <h3>Fields:</h3>
-    <ul>
-        <li><span class="parameter">a</span>
-         A button
-        </li>
-        <li><span class="parameter">b</span>
-         B button
-        </li>
-        <li><span class="parameter">x</span>
-         X button
-        </li>
-        <li><span class="parameter">y</span>
-         Y button
-        </li>
-        <li><span class="parameter">left</span>
-         Left movement control
-        </li>
-        <li><span class="parameter">right</span>
-         Right movement control
-        </li>
-        <li><span class="parameter">up</span>
-         Up movement control
-        </li>
-        <li><span class="parameter">down</span>
-         Down movement control
-        </li>
-        <li><span class="parameter">back</span>
-         Back button
-        </li>
-        <li><span class="parameter">start</span>
-         Start button
-        </li>
-        <li><span class="parameter">lb</span>
-         Left shoulder button
-        </li>
-        <li><span class="parameter">rb</span>
-         Right shoulder button
-        </li>
-        <li><span class="parameter">lt</span>
-         Left trigger
-        </li>
-        <li><span class="parameter">rt</span>
-         Right trigger
-        </li>
-        <li><span class="parameter">ls</span>
-         Left stick button
-        </li>
-        <li><span class="parameter">rs</span>
-         Right stick button
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
     <a name = "instance.stack"></a>
     <strong>instance.stack</strong>
     </dt>
@@ -786,7 +475,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2018-11-09 22:06:11 </i>
+<i style="float:right;">Last updated 2018-11-09 23:43:01 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

@@ -33,26 +33,15 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
-<li><a href="#Tables">Tables</a></li>
+<li><a href="#Fields">Fields</a></li>
 </ul>
 
 
-<h2>Scripts</h2>
-<ul class="nowrap">
-  <li><a href="../scripts/conf.html">conf</a></li>
-  <li><strong>main</strong></li>
-</ul>
-<h2>Modules</h2>
-<ul class="nowrap">
-  <li><a href="../modules/gamestates.gamepad.html">gamestates.gamepad</a></li>
-  <li><a href="../modules/gamestates.mainmenu.html">gamestates.mainmenu</a></li>
-  <li><a href="../modules/gamestates.play.html">gamestates.play</a></li>
-</ul>
 <h2>Classes</h2>
 <ul class="nowrap">
   <li><a href="../classes/core.autoupdater.html">core.autoupdater</a></li>
   <li><a href="../classes/core.background.html">core.background</a></li>
-  <li><a href="../classes/core.config.html">core.config</a></li>
+  <li><strong>core.config</strong></li>
   <li><a href="../classes/core.gameobject.html">core.gameobject</a></li>
   <li><a href="../classes/core.inputmanager.html">core.inputmanager</a></li>
   <li><a href="../classes/core.sprite.html">core.sprite</a></li>
@@ -70,13 +59,24 @@
   <li><a href="../classes/player.parts.torsos.test.html">player.parts.torsos.test</a></li>
   <li><a href="../classes/player.player.html">player.player</a></li>
 </ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/gamestates.gamepad.html">gamestates.gamepad</a></li>
+  <li><a href="../modules/gamestates.mainmenu.html">gamestates.mainmenu</a></li>
+  <li><a href="../modules/gamestates.play.html">gamestates.play</a></li>
+</ul>
+<h2>Scripts</h2>
+<ul class="nowrap">
+  <li><a href="../scripts/conf.html">conf</a></li>
+  <li><a href="../scripts/main.html">main</a></li>
+</ul>
 
 </div>
 
 <div id="content">
 
-<h1>Script <code>main</code></h1>
-<p>Entry point for love</p>
+<h1>Class <code>core.config</code></h1>
+<p>A configuration management class</p>
 <p>
 
 </p>
@@ -85,15 +85,23 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#love.load">love.load ()</a></td>
-	<td class="summary">Register game state and do initialization</td>
+	<td class="name" nowrap><a href="#Config.new">Config.new ()</a></td>
+	<td class="summary">Constructor</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Config:load">Config:load ()</a></td>
+	<td class="summary">Load data from either the user settings file or the default settings file</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Config:write">Config:write ()</a></td>
+	<td class="summary">Write data to the user settings file</td>
 	</tr>
 </table>
-<h2><a href="#Tables">Tables</a></h2>
+<h2><a href="#Fields">Fields</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Globals">Globals</a></td>
-	<td class="summary">Table holding anything that should be easily accessible anywhere within the game</td>
+	<td class="name" nowrap><a href="#instance.file">instance.file</a></td>
+	<td class="summary">The name of the file containing user settings</td>
 	</tr>
 </table>
 
@@ -105,11 +113,44 @@
     Methods
     <dl class="function">
     <dt>
-    <a name = "love.load"></a>
-    <strong>love.load ()</strong>
+    <a name = "Config.new"></a>
+    <strong>Config.new ()</strong>
     </dt>
     <dd>
-    Register game state and do initialization
+    Constructor
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A new Config instance
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Config:load"></a>
+    <strong>Config:load ()</strong>
+    </dt>
+    <dd>
+    Load data from either the user settings file or the default settings file
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Config:write"></a>
+    <strong>Config:write ()</strong>
+    </dt>
+    <dd>
+    Write data to the user settings file
 
 
 
@@ -119,15 +160,15 @@
 
 </dd>
 </dl>
-    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
 
     <dl class="function">
     <dt>
-    <a name = "Globals"></a>
-    <strong>Globals</strong>
+    <a name = "instance.file"></a>
+    <strong>instance.file</strong>
     </dt>
     <dd>
-    Table holding anything that should be easily accessible anywhere within the game
+    The name of the file containing user settings
 
 
 
