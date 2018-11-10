@@ -10,10 +10,9 @@ Test.__index = Test
 setmetatable(Test, {__index = Level})
 
 --- Constructor
--- @param player The Player object to use for this level
 -- @return A new Test instance
-function Test.new(player)
-	local instance = Level.new(player, 'assets/levels/test/test.lua')
+function Test.new()
+	local instance = Level.new('assets/levels/test/test.lua')
 
 	instance.bg = Background.new({
 		'assets/levels/test/bg/1.png',

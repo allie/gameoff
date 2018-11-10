@@ -15,12 +15,12 @@ Play.__index = menu
 function Play:init()
 	-- self.music = love.audio.newSource('assets/audio/test.mp3', 'stream')
 
-	self.player = Player.new()
-	self.player:setHead(TestHead.new())
-	self.player:setTorso(TestTorso.new())
-	self.player:setLegs(TestLegs.new())
+	Globals.player = Player.new()
+	Globals.player:setHead(TestHead.new())
+	Globals.player:setTorso(TestTorso.new())
+	Globals.player:setLegs(TestLegs.new())
 
-	self.level = TestLevel.new(self.player)
+	self.level = TestLevel.new()
 
 	self.hud = Hud.new()
 end

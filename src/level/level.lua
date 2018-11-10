@@ -8,9 +8,8 @@ Level.__index = Level
 
 --- Constructor
 -- @return A new Level instance
--- @param player A Player instance to use within the level
 -- @param mapFile Path to the Tiled map file
-function Level.new(player, mapFile)
+function Level.new(mapFile)
 	local instance = {}
 
 	--- Background image
@@ -31,9 +30,6 @@ function Level.new(player, mapFile)
 	--- bump world
 	instance.world = bump.newWorld()
 
-	--- Player instance
-	instance.player = player
-
 	--- Game objects affected by gravity
 	instance.objects = {}
 
@@ -50,8 +46,8 @@ function Level.new(player, mapFile)
 
 	--- Camera
 	instance.camera = Camera.new(
-		instance.player.aabb.x + instance.player.aabb.cx,
-		instance.player.aabb.cy + instance.player.aabb.cy,
+		Globals.player.aabb.x + Globals.player.aabb.cx,
+		Globals.player.aabb.cy + Globals.player.aabb.cy,
 		3
 	)
 
@@ -66,14 +62,14 @@ function Level.new(player, mapFile)
 	-- Set spawn point for the player
 	for k, object in pairs(instance.map.objects) do
 		if object.name == 'spawn' then
-			instance.player.aabb.x = object.x
-			instance.player.aabb.y = object.y
+			Globals.player.aabb.x = object.x
+			Globals.player.aabb.y = object.y
 			break
 		end
 	end
 
 	-- Add player to the game objects collection
-	table.insert(instance.objects, instance.player)
+	table.insert(instance.objects, Globals.player)
 
 	-- Load items into the world
 	for k, object in pairs(instance.map.objects) do
@@ -126,8 +122,8 @@ function Level:update(dt)
 
 	-- Update the position of the camera to follow the character
 	self.camera:lookAt(
-		self.player.aabb.x + self.player.aabb.cx,
-		self.player.aabb.y + self.player.aabb.cy
+		Globals.player.aabb.x + Globals.player.aabb.cx,
+		Globals.player.aabb.y + Globals.player.aabb.cy
 	)
 
 	-- Clamp the camera within the bounds of the level
@@ -147,7 +143,7 @@ function Level:draw()
 
 	-- Draw the background image
 	if self.bg ~= nil then
-		self.bg:draw(self.camera.x / (self.map.width * self.map.tilewidth - self.player.aabb.w))
+		self.bg:draw(self.camera.x / (self.map.width * self.map.tilewidth - Globals.player.aabb.w))
 	end
 
 	-- Calculate offset for map
