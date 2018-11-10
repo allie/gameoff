@@ -155,12 +155,12 @@ function Player:update(dt)
 		for i, key in ipairs(Globals.input.stack) do
 			-- Left
 			if key == 'left' then
-				self.velocity.x = -140
+				self.velocity.x = -180
 				self.facing = -1
 
 			-- Right
 			elseif key == 'right' then
-				self.velocity.x = 140
+				self.velocity.x = 180
 				self.facing = 1
 			end
 		end
