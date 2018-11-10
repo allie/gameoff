@@ -4,6 +4,7 @@
 --- Set love configuration
 -- @param t Configuration table
 function love.conf(t)
+	t.identity = 'GameOff'
 	t.accelerometerjoystick = false 
 	t.window.title = 'Game-Off'
 	t.window.icon = nil

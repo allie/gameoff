@@ -81,150 +81,6 @@ function InputManager.new()
 		rs = false
 	}
 
-	--- Keyboard button bindings for each input
-	-- @field a A button
-	-- @field b B button
-	-- @field x X button
-	-- @field y Y button
-	-- @field left Left movement control
-	-- @field right Right movement control
-	-- @field up Up movement control
-	-- @field down Down movement control
-	-- @field back Back button
-	-- @field start Start button
-	-- @field lb Left shoulder button
-	-- @field rb Right shoulder button
-	-- @field lt Left trigger
-	-- @field rt Right trigger
-	-- @field ls Left stick button
-	-- @field rs Right stick button
-	instance.keyboardBindings = {
-		a = nil,
-		b = 'space',
-		x = 'q',
-		y = 'e',
-		left = 'a',
-		right = 'd',
-		up = 'w',
-		down = 's',
-		back = 'backspace',
-		start = 'escape',
-		lb = nil,
-		rb = nil,
-		lt = nil,
-		rt = nil,
-		ls = nil,
-		rs = nil
-	}
-
-	--- Mouse bindings for each input
-	-- @field a A button
-	-- @field b B button
-	-- @field x X button
-	-- @field y Y button
-	-- @field left Left movement control
-	-- @field right Right movement control
-	-- @field up Up movement control
-	-- @field down Down movement control
-	-- @field back Back button
-	-- @field start Start button
-	-- @field lb Left shoulder button
-	-- @field rb Right shoulder button
-	-- @field lt Left trigger
-	-- @field rt Right trigger
-	-- @field ls Left stick button
-	-- @field rs Right stick button
-	instance.mouseBindings = {
-		a = 1,
-		b = nil,
-		x = nil,
-		y = nil,
-		left = nil,
-		right = nil,
-		up = nil,
-		down = nil,
-		back = nil,
-		start = nil,
-		lb = nil,
-		rb = nil,
-		lt = nil,
-		rt = nil,
-		ls = nil,
-		rs = nil
-	}
-
-	--- Gamepad button bindings for each input
-	-- @field a A button
-	-- @field b B button
-	-- @field x X button
-	-- @field y Y button
-	-- @field left Left movement control
-	-- @field right Right movement control
-	-- @field up Up movement control
-	-- @field down Down movement control
-	-- @field back Back button
-	-- @field start Start button
-	-- @field lb Left shoulder button
-	-- @field rb Right shoulder button
-	-- @field lt Left trigger
-	-- @field rt Right trigger
-	-- @field ls Left stick button
-	-- @field rs Right stick button
-	instance.gamepadButtonBindings = {
-		a = 'a',
-		b = 'b',
-		x = 'x',
-		y = 'y',
-		left = 'dpleft',
-		right = 'dpright',
-		up = 'dpup',
-		down = 'dpdown',
-		back = 'back',
-		start = 'start',
-		lb = 'leftshoulder',
-		rb = 'rightshoulder',
-		lt = nil,
-		rt = nil,
-		ls = 'leftstick',
-		rs = 'rightstick'
-	}
-
-	--- Gamepad trigger bindings for each input
-	-- @field a A button
-	-- @field b B button
-	-- @field x X button
-	-- @field y Y button
-	-- @field left Left movement control
-	-- @field right Right movement control
-	-- @field up Up movement control
-	-- @field down Down movement control
-	-- @field back Back button
-	-- @field start Start button
-	-- @field lb Left shoulder button
-	-- @field rb Right shoulder button
-	-- @field lt Left trigger
-	-- @field rt Right trigger
-	-- @field ls Left stick button
-	-- @field rs Right stick button
-	instance.gamepadTriggerBindings = {
-		a = nil,
-		b = nil,
-		x = nil,
-		y = nil,
-		left = nil,
-		right = nil,
-		up = nil,
-		down = nil,
-		back = nil,
-		start = nil,
-		lb = nil,
-		rb = nil,
-		lt = 'triggerleft',
-		rt = 'triggerright',
-		ls = nil,
-		rs = nil
-	}
-
 	--- A stack containing the most recently activated inputs in order
 	instance.stack = {}
 
@@ -248,16 +104,6 @@ function InputManager.new()
 
 	setmetatable(instance, InputManager)
 	return instance
-end
-
---- Load input bindings from a configuration file
-function InputManager:loadBindings()
-
-end
-
---- Save input bindings to a configuration file
-function InputManager:saveBindings()
-
 end
 
 --- Find all connected gamepads
@@ -298,14 +144,14 @@ function InputManager:update(dt)
 	end
 
 	-- Keyboard bindings
-	for input, binding in pairs(self.keyboardBindings) do
+	for input, binding in pairs(Globals.config.keyboardBindings) do
 		if binding ~= nil then
 			self.currentState[input] = self.currentState[input] or love.keyboard.isDown(binding)
 		end
 	end
 
 	-- Mouse bindings
-	for input, binding in pairs(self.mouseBindings) do
+	for input, binding in pairs(Globals.config.mouseBindings) do
 		if binding ~= nil then
 			self.currentState[input] = self.currentState[input] or love.mouse.isDown(binding)
 		end
@@ -313,14 +159,14 @@ function InputManager:update(dt)
 
 	if self.gamepad ~= nil then
 		-- Gamepad button bindings
-		for input, binding in pairs(self.gamepadButtonBindings) do
+		for input, binding in pairs(Globals.config.gamepadButtonBindings) do
 			if binding ~= nil then
 				self.currentState[input] = self.currentState[input] or self.gamepad:isDown(binding)
 			end
 		end
 
 		-- Gamepad trigger bindings
-		for input, binding in pairs(self.gamepadTriggerBindings) do
+		for input, binding in pairs(Globals.config.gamepadTriggerBindings) do
 			if binding ~= nil then
 				self.currentState[input] = self.currentState[input] or math.abs(self.gamepad:getGamepadAxis(binding)) > self.triggerDeadzone
 			end
