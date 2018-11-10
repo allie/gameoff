@@ -25,7 +25,7 @@ function SoundManager.new()
 	instance.effectVolume = 0.1
 
 	--- Volume of music tracks
-	instance.musicVolume = 0.7
+	instance.musicVolume = 0.5
 
 	setmetatable(instance, SoundManager)
 	return instance
@@ -44,6 +44,7 @@ end
 -- @param track The name of the track to be played
 function SoundManager:startTrack(track)
 	if self.tracks[track] ~= nil then
+		self.tracks[track]:setVolume(Globals.config.masterVolume * self.musicVolume)
 		self.tracks[track]:setLooping(true)
 		self.tracks[track]:play()
 	end

@@ -16,6 +16,8 @@ local SoundManager = require('core.soundmanager')
 
 -- Game states
 local MenuState = require('gamestates.mainmenu')
+local OptionsState = require('gamestates.optionsmenu')
+local AudioState = require('gamestates.audiomenu')
 local PlayState = require('gamestates.play')
 
 --- Table holding anything that should be easily accessible anywhere within the game
@@ -29,6 +31,8 @@ function love.load()
 
 	Globals.gamestates = {
 		mainMenu = MenuState,
+		optionsMenu = OptionsState,
+		audioMenu = AudioState,
 		play = PlayState
 	}
 
