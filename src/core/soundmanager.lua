@@ -11,15 +11,16 @@ function SoundManager.new()
 
 	--- Collection of sounds
 	instance.sounds = {
-		['ui-move'] = love.audio.newSource('assets/audio/SFX_Blip06.ogg', 'stream'),
-		['ui-select'] = love.audio.newSource('assets/audio/SFX_Blip04.ogg', 'stream'),
-		['ui-back'] = love.audio.newSource('assets/audio/SFX_Lose08.ogg', 'stream'),
-		['player-jump'] = love.audio.newSource('assets/audio/SFX_Jump04.ogg', 'stream')
+		['ui-move'] = love.audio.newSource('assets/audio/sfx/SFX_Blip06.ogg', 'stream'),
+		['ui-select'] = love.audio.newSource('assets/audio/sfx/SFX_Blip04.ogg', 'stream'),
+		['ui-back'] = love.audio.newSource('assets/audio/sfx/SFX_Lose08.ogg', 'stream'),
+		['player-jump'] = love.audio.newSource('assets/audio/sfx/SFX_Jump04.ogg', 'stream')
 	}
 
 	--- Collection of music tracks
 	instance.tracks = {
-		['menu'] = love.audio.newSource('assets/audio/Music1.mp3', 'stream')
+		['menu'] = love.audio.newSource('assets/audio/music/prologue.mp3', 'stream'),
+		['level1'] = love.audio.newSource('assets/audio/music/level1.mp3', 'stream')
 	}
 
 	--- Volume of sound effects
@@ -27,6 +28,9 @@ function SoundManager.new()
 
 	--- Volume of music tracks
 	instance.musicVolume = 0.5
+
+	--- Current music track
+	instance.np = nil
 
 	setmetatable(instance, SoundManager)
 	return instance
@@ -45,9 +49,14 @@ end
 -- @param track The name of the track to be played
 function SoundManager:startTrack(track)
 	if self.tracks[track] ~= nil then
-		self.tracks[track]:setVolume(Globals.config.masterVolume * self.musicVolume)
-		self.tracks[track]:setLooping(true)
-		self.tracks[track]:play()
+		if self.np ~= nil then
+			self.np:stop()
+		end
+
+		self.np = self.tracks[track]
+		self.np:setVolume(Globals.config.masterVolume * self.musicVolume)
+		self.np:setLooping(true)
+		self.np:play()
 	end
 end
 

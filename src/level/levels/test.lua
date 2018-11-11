@@ -24,6 +24,8 @@ function Test.new()
 
 	instance.bg:autoscroll(5, 5, 'right')
 
+	Globals.sound:startTrack('level1')
+
 	setmetatable(instance, Test)
 	return instance
 end
