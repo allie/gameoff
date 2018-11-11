@@ -91,7 +91,7 @@ function InputManager.new()
 	instance.stickDeadzone = 0.3
 
 	--- Collection of all gamepads found on the system
-	instance.gamepads = nil
+	instance.gamepads = {}
 
 	--- Currently enabled gamepad
 	instance.gamepad = nil
@@ -112,7 +112,7 @@ function InputManager:findGamepads()
 	local joysticks = love.joystick.getJoysticks()
 	for i, joystick in ipairs(joysticks) do
 		if joystick:isGamepad() then
-			table.insert(self.joysticks, joystick)
+			table.insert(self.gamepads, joystick)
 
 			-- Fix
 			if i == 1 then
@@ -161,7 +161,7 @@ function InputManager:update(dt)
 		-- Gamepad button bindings
 		for input, binding in pairs(Globals.config.gamepadButtonBindings) do
 			if binding ~= nil then
-				self.currentState[input] = self.currentState[input] or self.gamepad:isDown(binding)
+				self.currentState[input] = self.currentState[input] or self.gamepad:isGamepadDown(binding)
 			end
 		end
 
