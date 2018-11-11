@@ -2,8 +2,6 @@
 -- @module gamestates.menu
 -- @todo This code is a mess
 
-local ScreenTransition = require('core.screentransition')
-
 local Menu = {}
 Menu.__index = Menu
 
@@ -28,12 +26,6 @@ function Menu:basicInit()
 	self.titleColour = {0/255, 255/255, 120/255}
 	self.itemColour = {255/255, 255/255, 255/255}
 	self.selectedItem = 1
-
-	self.fadein = nil
-	self.fadeout = nil
-
-	self.entering = false
-	self.exiting = false
 end
 
 --- Initialization
@@ -43,51 +35,27 @@ end
 
 --- Enter this state
 function Menu:enter()
-	self.fadein = ScreenTransition.new('fadein', 0.5)
+
 end
 
 --- Resume this state
 function Menu:resume()
-	self.fadein = ScreenTransition.new('fadein', 0.5)
+
 end
 
 --- Enter the game state associated with the current menu option
 function Menu:enterMenuItem()
-	self.entering = true
 	Globals.sound:play('ui-select')
-	self.nextState = self.itemStates[self.menuItems[self.selectedItem]]
-	self.fadeout = ScreenTransition.new('fadeout', 0.5)
+	Globals.gamestates.fade:setDuration(0.5)
+	Globals.gamestates.fade:setNextState(self.itemStates[self.menuItems[self.selectedItem]])
+	Gamestate.push(Globals.gamestates.fade)
 end
 
 --- Exit the current menu state
 function Menu:exitMenu()
-	self.exiting = true
 	Globals.sound:play('ui-back')
-	self.fadeout = ScreenTransition.new('fadeout', 0.5)
-end
-
---- Update screen transitions
--- @return Whether or not input should be blocked
-function Menu:updateTransitions()
-	local block = false
-
-	if self.fadeout ~= nil then
-		block = true
-
-		if self.fadeout.finished then
-			self.fadeout = nil
-
-			if self.entering then
-				self.entering = false
-				Gamestate.push(self.nextState)
-			elseif self.exiting then
-				self.exiting = false
-				Gamestate.pop()
-			end
-		end
-	end
-
-	return block
+	Globals.gamestates.fade:setDuration(0.5)
+	Gamestate.pop()
 end
 
 --- Check whether the cursor should be moved down
@@ -131,12 +99,6 @@ end
 --- A basic update routine for a standard menu
 -- @param dt Delta time
 function Menu:basicUpdate(dt)
-	local block = self:updateTransitions()
-
-	if block then
-		return
-	end
-
 	if self:checkMoveUp() then
 	elseif self:checkMoveDown() then
 	elseif self:checkEnterItem() then
@@ -182,18 +144,6 @@ function Menu:basicDraw()
 			love.graphics.getWidth(),
 			'center'
 		)
-	end
-
-	-- Draw fade in if necessary
-	if self.fadein ~= nil and not self.fadein.finished then
-		self.fadein:draw()
-	else
-		self.fadein = nil
-	end
-
-	-- Draw fade out if necessary
-	if self.fadeout ~= nil and not self.fadeout.finished then
-		self.fadeout:draw()
 	end
 end
 

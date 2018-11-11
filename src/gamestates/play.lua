@@ -8,7 +8,6 @@ local TestTorso = require('player.parts.torsos.test')
 local TestLegs = require('player.parts.legs.test')
 local TestLevel = require('level.levels.test')
 local Hud = require('hud.hud')
-local ScreenTransition = require('core.screentransition')
 
 local Play = {}
 Play.__index = menu
@@ -22,25 +21,12 @@ function Play:init()
 	self.level = TestLevel.new()
 
 	self.hud = Hud.new()
-
-	self.fadein = nil
-	self.fadeout = nil
-end
-
-function Play:enter()
-	self.fadein = ScreenTransition.new('fadein', 0.5)
 end
 
 function Play:draw()
+	love.graphics.clear()
 	self.level:draw()
 	self.hud:draw()
-
-	-- Draw fade in if necessary
-	if self.fadein ~= nil and not self.fadein.finished then
-		self.fadein:draw()
-	else
-		self.fadein = nil
-	end
 end
 
 function Play:update(dt)

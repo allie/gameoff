@@ -13,6 +13,7 @@ function SoundManager.new()
 	instance.sounds = {
 		['ui-move'] = love.audio.newSource('assets/audio/SFX_Blip06.ogg', 'stream'),
 		['ui-select'] = love.audio.newSource('assets/audio/SFX_Blip04.ogg', 'stream'),
+		['ui-back'] = love.audio.newSource('assets/audio/SFX_Lose08.ogg', 'stream'),
 		['player-jump'] = love.audio.newSource('assets/audio/SFX_Jump04.ogg', 'stream')
 	}
 
