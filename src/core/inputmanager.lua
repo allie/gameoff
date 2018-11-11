@@ -173,10 +173,10 @@ function InputManager:update(dt)
 		end
 
 		-- Gamepad left stick
-		self.currentState.left = self.currentState.left or self.gamepad:getGamepadAxis('leftx') > self.triggerDeadzone
-		self.currentState.right = self.currentState.right or self.gamepad:getGamepadAxis('leftx') < -self.triggerDeadzone
-		self.currentState.up = self.currentState.up or self.gamepad:getGamepadAxis('lefty') < -self.triggerDeadzone
-		self.currentState.down = self.currentState.down or self.gamepad:getGamepadAxis('lefty') > self.triggerDeadzone
+		self.currentState.left = self.currentState.left or self.gamepad:getGamepadAxis('leftx') < -self.triggerDeadzone
+		self.currentState.right = self.currentState.right or self.gamepad:getGamepadAxis('leftx') > self.triggerDeadzone
+		self.currentState.up = self.currentState.up or self.gamepad:getGamepadAxis('lefty') > self.triggerDeadzone
+		self.currentState.down = self.currentState.down or self.gamepad:getGamepadAxis('lefty') < -self.triggerDeadzone
 	end
 
 	-- Update the input stack
