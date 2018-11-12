@@ -27,11 +27,13 @@ end
 function AutoUpdater:update(dt)
 	for i, object in ipairs(self.objects) do
 		object:update(dt)
+	end
 
-		-- If the object has a 'finished' property and it's marked as true,
-		-- remove it from the updater
-		if object.finished ~= nil and object.finished then
-			self.objects[i] = nil
+	-- If the object has a 'finished' property and it's marked as true,
+	-- remove it from the updater
+	for i = #self.objects, 1, -1 do
+		if self.objects[i].finished ~= nil and self.objects[i].finished then
+			table.remove(self.objects, i)
 		end
 	end
 end

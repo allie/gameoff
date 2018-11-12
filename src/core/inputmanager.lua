@@ -122,6 +122,46 @@ function InputManager:findGamepads()
 	end
 end
 
+--- Rebind a control; if the chosen input is already bound to
+-- something else, that control will become unbound
+-- @param target The control to rebind
+-- @param kind The kind of input being bound
+-- @param input The input to bind to
+-- @param[opt] value The value of an axis input (positive or negative)
+function InputManager:rebind(target, kind, input, value)
+	value = value or 0
+
+	-- Keybord/mouse controls
+	if kind == 'key' or kind == 'mouse' then
+		-- Check to see if another control already shares this input
+		for control, binding in pairs(Globals.config.keyBindings) do
+			if binding[1] == kind and binding[2] == input then
+				Globals.config.keyBindings[control] = nil
+				break
+			end
+		end
+
+		-- Set the new binding
+		Globals.config.keyBindings[target] = {kind, input}
+
+	-- Gamepad controls
+	elseif kind == 'button' or kind == 'trigger' then
+		-- Check to see if another control already shares this input
+		for control, binding in pairs(Globals.config.gamepadBindings) do
+			if binding[1] == kind and binding[2] == input then
+				Globals.config.gamepadBindings[control] = nil
+				break
+			end
+		end
+
+		-- Set the new binding
+		Globals.config.gamepadBindings[target] = {kind, input}
+	end
+
+	-- Rewrite the config file
+	Globals.config:write()
+end
+
 --- Determine whether the given input was activated between the last tick and now
 -- @return True if activated, false if not
 function InputManager:wasActivated(input)
@@ -143,32 +183,26 @@ function InputManager:update(dt)
 		self.currentState[input] = false
 	end
 
-	-- Keyboard bindings
-	for input, binding in pairs(Globals.config.keyboardBindings) do
+	-- Keyboard and mouse bindings
+	for input, binding in pairs(Globals.config.keyBindings) do
 		if binding ~= nil then
-			self.currentState[input] = self.currentState[input] or love.keyboard.isDown(binding)
-		end
-	end
-
-	-- Mouse bindings
-	for input, binding in pairs(Globals.config.mouseBindings) do
-		if binding ~= nil then
-			self.currentState[input] = self.currentState[input] or love.mouse.isDown(binding)
+			if binding[1] == 'key' then
+				self.currentState[input] = self.currentState[input] or love.keyboard.isDown(binding[2])
+			elseif binding[1] == 'mouse' then
+				self.currentState[input] = self.currentState[input] or love.mouse.isDown(binding[2])
+			end
 		end
 	end
 
 	if self.gamepad ~= nil then
-		-- Gamepad button bindings
-		for input, binding in pairs(Globals.config.gamepadButtonBindings) do
+		-- Gamepad bindings
+		for input, binding in pairs(Globals.config.gamepadBindings) do
 			if binding ~= nil then
-				self.currentState[input] = self.currentState[input] or self.gamepad:isGamepadDown(binding)
-			end
-		end
-
-		-- Gamepad trigger bindings
-		for input, binding in pairs(Globals.config.gamepadTriggerBindings) do
-			if binding ~= nil then
-				self.currentState[input] = self.currentState[input] or math.abs(self.gamepad:getGamepadAxis(binding)) > self.triggerDeadzone
+				if binding[1] == 'button' then
+					self.currentState[input] = self.currentState[input] or self.gamepad:isGamepadDown(binding[2])
+				elseif binding[1] == 'trigger' then
+					self.currentState[input] = self.currentState[input] or math.abs(self.gamepad:getGamepadAxis(binding[2])) > self.triggerDeadzone
+				end
 			end
 		end
 

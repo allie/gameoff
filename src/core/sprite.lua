@@ -113,11 +113,22 @@ end
 --- Draw the sprite on the screen
 -- @param x X coordinate
 -- @param y Y coordinate
-function Sprite:draw(x, y)
+-- @param r Orientation (radians)
+-- @param sx X scale
+-- @param sy Y scale
+-- @param ox X origin offset
+-- @param oy Y origin offset
+function Sprite:draw(x, y, r, sx, sy, ox, oy)
+	r = r or 0
+	sx = sx or 1
+	sy = sy or 1
+	ox = ox or 0
+	oy = oy or 0
+
 	if self.animated then
-		love.graphics.draw(self.image, self.quads[self.currentFrame], x, y)
+		love.graphics.draw(self.image, self.quads[self.currentFrame], x, y, r, sx, sy, ox, oy)
 	else
-		love.graphics.draw(self.image, x, y)
+		love.graphics.draw(self.image, x, y, r, sx, sy, ox, oy)
 	end
 end
 

@@ -24,7 +24,7 @@ function OptionsMenu:init()
 	self.itemStates = {
 		['Audio'] = Globals.gamestates.audioMenu,
 		['Video'] = nil,
-		['Controls'] = nil,
+		['Controls'] = Globals.gamestates.controlsMenu,
 		['Misc'] = nil
 	}
 end

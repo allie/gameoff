@@ -19,6 +19,7 @@ local FadeState = require('gamestates.fade')
 local MenuState = require('gamestates.mainmenu')
 local OptionsState = require('gamestates.optionsmenu')
 local AudioState = require('gamestates.audiomenu')
+local ControlsState = require('gamestates.controlsmenu')
 local PlayState = require('gamestates.play')
 
 --- Table holding anything that should be easily accessible anywhere within the game
@@ -72,6 +73,7 @@ function love.load()
 		mainMenu = MenuState,
 		optionsMenu = OptionsState,
 		audioMenu = AudioState,
+		controlsMenu = ControlsState,
 		play = PlayState
 	}
 
